@@ -76,8 +76,22 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
 					controller: "singleNominee"
 				}
 			}
-		});
-		
+		})
+        .state("RegistrationForm", {
+            url: "/RegistrationForm",
+            views: {
+                "main": {
+                    templateUrl: "components/RegistrationForm/RegistrationForm.html",
+                    controller: "RegistrationForm"
+                }
+            }
+        })
+
+	;
+
+
+
+
 	$httpProvider.interceptors.push(function($document,$rootScope) {
 		return {
 			'request': function(config) {

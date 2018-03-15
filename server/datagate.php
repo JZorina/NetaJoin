@@ -38,7 +38,12 @@ switch ($type) {
 		if ($me['type'] == 'admin')
 			$ans = $Religion -> AddReligion($data->religions);
 			break;
-			
+
+    // ------------ Schools ------------
+    case "GetSchools" :
+        $ans = $School -> GetSchools();
+        break;
+
 	default :
 		$ans = array("error" => "not valid type");
 }

@@ -1,0 +1,35 @@
+:root {
+    --main-bg-color: white;
+    --main-text-color: #008;
+    --field-highlight-color: #def;
+}
+
+body{
+    background-color:var(--main-bg-color);
+    color: var(--main-text-color);
+}
+.registration-form-title{
+    text-align: center;
+
+}
+#registration-form
+{
+    margin: 5% 10%;
+}
+
+#registration-form input:hover, #registration-form select:hover
+{
+    background-color:var(--field-highlight-color);
+}
+#registration-form input, #registration-form select
+{
+    border: none;
+    border-bottom: 1px solid var(--main-text-color);
+    transition: all 0.5s;
+    width: 100%;
+    margin-bottom: 1%;
+}
+.secondary-field{
+    margin-right: 5% ;
+    width: 95%;
+}

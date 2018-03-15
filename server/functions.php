@@ -7,6 +7,7 @@ require 'PHPMailer/PHPMailerAutoload.php';
 require_once(SERVERROOT."/modules/Gender.php");
 require_once(SERVERROOT."/modules/Religion.php");
 require_once(SERVERROOT."/modules/City.php");
+require_once(SERVERROOT."/modules/JoinToNeta/School.php");
 
 $db = new Db($conf->DB->host,$conf->DB->DBName,$conf->DB->userName,$conf->DB->pass,$conf->DB->logError);
 
@@ -14,6 +15,7 @@ $db = new Db($conf->DB->host,$conf->DB->DBName,$conf->DB->userName,$conf->DB->pa
 $Gender = new Gender();
 $Religion = new Religion();
 $City = new City();
+$School = new School();
 $mail = new PHPMailer;
 
 

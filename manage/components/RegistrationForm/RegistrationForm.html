@@ -1,0 +1,108 @@
+<Form ng-submit="register()" id="registration-form">
+    <br>
+    <label>
+        שם פרטי:
+    </label><br>
+    <input required type="text" ng-model="nominee.firstname">
+    <br>
+
+    <label>
+        שם משפחה:
+    </label><br>
+    <input required type="text" ng-model="nominee.lastname">
+    <br>
+
+    <label>
+        כתובת אימייל:
+    </label><br>
+    <input required type="email" ng-model="nominee.email">
+    <br>
+    <label>
+        מספר טלפון:
+    </label><br>
+    <input required type="text" ng-model="nominee.phone">
+    <br>
+    <label>
+       מספר טלפון של הורה:
+    </label><br>
+    <input required type="text" ng-model="nominee.parentphone">
+    <br>
+    <label>
+       תאריך לידה:
+    </label><br>
+    <input required type="date" ng-model="nominee.birthday">
+    <br>
+    <label>
+       תעודת זהות:
+    </label><br>
+    <input required type="text" ng-model="nominee.idnumber">
+    <br>
+    <label>
+       עיר מגורים:
+    </label><br>
+    <select required ng-model="nominee.cityid">
+        <option ng-repeat="city in cities" ng-value="city.cityid">{{city.name}}</option>
+        <option value="999">אחר</option>
+    </select>
+    <br>
+    <div class="secondary-field" ng-if="nominee.cityid==999">
+        <label>
+            אחר:
+        </label><br>
+        <input required type="text" ng-model="nominee.cityother">
+        <br>
+    </div>
+    <label>
+        עיר פעילות בתוכנית:
+    </label><br>
+    <select required ng-model="nominee.netacityid">
+        <option value="0">Ramla</option>
+        <option value="1">TA</option>
+    </select>
+    <br>
+    <label>
+        בית ספר:
+    </label><br>
+    <select required ng-model="nominee.schoolid">
+        <option ng-repeat="school in schools" ng-value="school.schoolid">{{school.schoolname}}</option>
+        <option value="999">אחר</option>
+    </select>
+    <br>
+    <div class="secondary-field" ng-if="nominee.schoolid==999">
+        <label>
+            אחר:
+        </label><br>
+        <input required type="text" ng-model="nominee.schoolother">
+        <br>
+    </div>
+    <label>
+        כיתה:
+    </label><br>
+    <select required ng-model="nominee.classid">
+        <option value="0">a</option>
+        <option value="1">b</option>
+    </select>
+    <br>
+    <label>
+        כיצד הגעת עלינו?
+    </label><br>
+    <select required ng-model="nominee.hearaboutid">
+        <option value="1">דרך חבר</option>
+        <option value="2">from school</option>
+        <option value="999">אחר</option>
+    </select>
+    <br>
+    <div  class="secondary-field" ng-if="nominee.hearaboutid==999">
+        <label>
+            אחר:
+        </label><br>
+        <input required type="text" ng-model="nominee.hearaboutother">
+        <br>
+    </div>
+    <button type="submit"> סבבה </button>
+
+
+
+
+
+</Form>

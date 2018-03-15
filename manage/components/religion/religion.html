@@ -1,0 +1,35 @@
+<div id="wrapper">
+	<header></header>
+<div id="page-wrapper">
+	<div class="panel-body">
+		<div class="tab-content">
+		<form ng-submit="SaveData()" role="form">
+
+			<h5>מגזרים:</h5>
+			<hr>
+			<h5 style="margin-right: 33px;">עברית:</h5>
+			<h5 style="margin-right: 35%;margin-top: -25px;">ערבית:</h5>
+			<div class="form-group" ng-repeat="religion in religions">
+				<div>
+					<input required style="width: 30%;margin-left: 20px; float: right;" class="form-control" placeholder="שם דת" ng-model="religion.name">
+					<input style="width: 30%;" class="form-control" placeholder="שם דת" ng-model="religion.nameinarabic">
+				</div>
+			</div>
+			<button ng-click="CreateData()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף דת<img src="./img/icon-add.png" /></button>
+
+			<hr>
+			<div class="card-controls">
+				<button tabindex="18" type="submit" class="button card-control commit-card-edit">שמור</button>
+				<button tabindex="19" type="button" class="button card-control cancel-card-edit" ng-click="ClearData();">בטל</button>
+			</div>
+			<span modal-confirm control="alertcontrol" text="הנתונים נשמרו בהצלחה.">
+			</span>
+			
+		</form>
+		</div>
+	</div>
+	<!-- /.panel-body -->
+</div>
+
+</div>
+

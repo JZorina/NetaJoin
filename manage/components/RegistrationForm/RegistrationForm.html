@@ -1,7 +1,7 @@
 <Form ng-submit="register()" id="registration-form">
     <br>
     <label>
-        שם פרטי:
+        שםם פרטי:
     </label><br>
     <input required type="text" ng-model="nominee.firstname">
     <br>
@@ -56,8 +56,8 @@
         עיר פעילות בתוכנית:
     </label><br>
     <select required ng-model="nominee.netacityid">
-        <option value="0">Ramla</option>
-        <option value="1">TA</option>
+        <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.Cityid">{{NetaCity.CityName}}</option>
+        <option value="999">אחר</option>
     </select>
     <br>
     <label>
@@ -99,7 +99,7 @@
         <input required type="text" ng-model="nominee.hearaboutother">
         <br>
     </div>
-    <button type="submit"> סבבה </button>
+    <button type="submit"> סבבהה </button>
 
 
 

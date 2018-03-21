@@ -22,6 +22,9 @@ switch ($type) {
 		if ($me['type'] == 'admin')
 			$ans = $City -> AddCities($data->cities);
 		break;
+    case "GetNetaCities" :
+        $ans = $NetaCity -> GetNetaCities();
+        break;
 	// ------------ Genders ------------
 	case "GetGenders" :
 		$ans = $Gender -> GetGenders();
@@ -43,6 +46,7 @@ switch ($type) {
     case "GetSchools" :
         $ans = $School -> GetSchools();
         break;
+
 
 	default :
 		$ans = array("error" => "not valid type");

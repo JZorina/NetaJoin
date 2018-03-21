@@ -15,6 +15,7 @@ $db = new Db($conf->DB->host,$conf->DB->DBName,$conf->DB->userName,$conf->DB->pa
 $Gender = new Gender();
 $Religion = new Religion();
 $City = new City();
+$NetaCity = new $NetaCity();
 $School = new School();
 $mail = new PHPMailer;
 

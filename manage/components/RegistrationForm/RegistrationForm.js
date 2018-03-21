@@ -39,5 +39,15 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
         });
     }
     $scope.GetCities();
+
+
+    $scope.Netacities = [];
+    $scope.GetNetaCities = function () {
+        var data={};
+        server.requestPhp(data, "GetNetaCities").then(function (data) {
+            $scope.Netacities = data;
+        });
+    }
+    $scope.GetNetaCities();
 }
 ]);

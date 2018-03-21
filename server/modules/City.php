@@ -49,5 +49,16 @@ class City{
 		return $result;
 	}
 
+    function GetNetaCities()
+    {
+        global $db;
+        $Cities = $db->smartQuery(array(
+            'sql' => "Select * FROM netacity Order By name",
+            'par' => array(),
+            'ret' => 'all'
+        ));
+        return $Cities;
+    }
+
 
 }

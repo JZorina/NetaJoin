@@ -47,8 +47,38 @@ switch ($type) {
         $ans = $School -> GetSchools();
         break;
 
+    case "GetSchoolsByNetaCityId" :
+        $ans = $School -> GetSchoolsByNetaCityId($data->NetaCityId);
+        break;
 
-	default :
+    // ------------ Classes ------------
+
+    case "GetClasses" :
+        $ans = $Class -> GetClasses();
+        break;
+
+    // ------------ HearAboutUs ------------
+
+    case "GetHearAboutUsOptions" :
+        $ans = $HearAboutUs -> GetHearAboutUsOptions();
+        break;
+
+    // ------------ Nominees ------------
+    case "SearchNominees" :
+        $ans = $Nominee -> SearchNominees($data->search, $data->sorting, $data->desc, $data->page );
+        break;
+    case "AddNominee" :
+        $ans = $Nominee -> AddNominee($data->nominee);
+        break;
+    case "UpdateNomineeStatus" :
+        $ans = $Nominee -> UpdateNomineeStatus($data->nomineeid,$data->nomineestatusid);
+        break;
+    // ------------ Status ------------
+    case "GetStatuses" :
+        $ans = $NomineeStatus -> GetStatuses();
+        break;
+
+    default :
 		$ans = array("error" => "not valid type");
 }
 

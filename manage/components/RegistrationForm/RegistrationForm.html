@@ -1,7 +1,7 @@
 <Form ng-submit="register()" id="registration-form">
     <br>
     <label>
-        שםם פרטי:
+        שם פרטי:
     </label><br>
     <input required type="text" ng-model="nominee.firstname">
     <br>
@@ -55,11 +55,18 @@
     <label>
         עיר פעילות בתוכנית:
     </label><br>
-    <select required ng-model="nominee.netacityid">
-        <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.Cityid">{{NetaCity.CityName}}</option>
+    <select required ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()">
+        <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{NetaCity.CityName}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
+    <div class="secondary-field" ng-if="nominee.netacityid==999">
+    <label>
+        אחר:
+    </label><br>
+    <input required type="text" ng-model="nominee.netacityother">
+    <br>
+    </div>
     <label>
         בית ספר:
     </label><br>
@@ -79,16 +86,14 @@
         כיתה:
     </label><br>
     <select required ng-model="nominee.classid">
-        <option value="0">a</option>
-        <option value="1">b</option>
+        <option ng-repeat="class in Classes" ng-value="class.classid">{{class.classname}}</option>
     </select>
     <br>
     <label>
         כיצד הגעת עלינו?
     </label><br>
     <select required ng-model="nominee.hearaboutid">
-        <option value="1">דרך חבר</option>
-        <option value="2">from school</option>
+        <option ng-repeat="HearAbout in HearAboutUs" ng-value="HearAbout.hearaboutid">{{HearAbout.hearaboutoption}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
@@ -99,7 +104,8 @@
         <input required type="text" ng-model="nominee.hearaboutother">
         <br>
     </div>
-    <button type="submit"> סבבהה </button>
+
+    <button type="submit"> סבבה </button>
 
 
 

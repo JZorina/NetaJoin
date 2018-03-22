@@ -5,8 +5,7 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 	$scope.reverseOrder=$stateParams.desc;
 	$scope.pageIndex = $stateParams.page;
 	$scope.pageCount;
-	$scope.students=[];
-	$scope.studentStatus=1;
+	$scope.nominees=[];
 
 	$scope.alertcontrol={};
 	$scope.show=false;
@@ -21,7 +20,7 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 	}
 	$scope.GetMyType();
 	
-	$scope.getStudents = function() {
+	$scope.getNominees = function() {
 		$scope.loading=true;
 		var search = $scope.search;
 		var sorting = $scope.sortingField;
@@ -30,13 +29,13 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 		var page = $scope.pageIndex;
 
 		var data ={'search': search, 'sorting': sorting, 'desc':desc, 'userstatus': userstatus, 'page': page};
-		server.requestPhp(data, 'SearchStudents').then(function (data) {
-			$scope.students = data.students;
+		server.requestPhp(data, 'SearchNominees').then(function (data) {
+			$scope.nominees = data.nominees;
 			$scope.pageCount = parseInt(data.pages);
 			$scope.loading=false;
 		});
 	}
-	$scope.getStudents();
+	$scope.getNominees();
 	
 	$scope.refreshResults=function()
 	{
@@ -49,21 +48,21 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 		{
 			notify: false
 		});
-		$scope.getStudents();
+		$scope.getNominees();
 	}
 	
 	$scope.goToActiveTab = function()
 	{
 		$scope.pageIndex=0;
 		$scope.studentStatus=1;
-		$scope.getStudents();
+		$scope.getNominees();
 	}
 	
 	$scope.goToInactiveTab = function()
 	{
 		$scope.pageIndex=0;
 		$scope.studentStatus=0;
-		$scope.getStudents();
+		$scope.getNominees();
 	}
 	
 	$scope.goToPage = function(pageNum)
@@ -89,44 +88,23 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 		$scope.sortingField=sortIndex;
 		$scope.refreshResults();
 	}
-	
-	$scope.addStudent = function()
-	{
-		$state.transitionTo('singleStudent', {
-			studentId : ''
-		});
-	}
-	
-	$scope.goToStudentPage = function(student)
-	{
-		$state.transitionTo('singleStudent', {
-			studentId : student.studentid
-		});
-	}
-	
-	$scope.fileUpload=false;
-	
-	$scope.onFileSelect = function($files) {
-			$scope.fileUpload=true;
-			Upload.upload({
-				url: phpDomain+'datagate.php?type=UploadStudentsFile&token=' + $rootScope.userToken,
-				file: $files,
-				progress: function(e){}
-			}).then(function(data, status, headers, config) {
-				if(data.data.error!=null)
-				{
-					alert(data.data.error);
-				}
-				else if (data.status==200)
-				{
-					alert("החניכים נקלטו במערכת");
-					$state.reload();
-				}
-				else
-				{
-					alert("תקלה בהעלאת קובץ");
-				}
-				$scope.fileUpload=false;
-			}); 
-	}
+    $scope.NomineesStatuses = [];
+
+    $scope.GetStatuses = function () {
+        var data={};
+        server.requestPhp(data, "GetStatuses").then(function (data) {
+            $scope.NomineesStatuses = data;
+        });
+    }
+    $scope.GetStatuses();
+
+    $scope.UpdateNomineeStatus = function (nominee) {
+        var data={};
+        data.nomineeid= nominee.nomineeid;
+        data.nomineestatusid= nominee.nomineestatusid;
+        server.requestPhp(data, "UpdateNomineeStatus").then(function (data) {}
+        );
+    }
+    
+
 } ]);

@@ -15,21 +15,27 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
 		hearaboutid: '',
 		hearaboutother: '',
 		schoolother: '',
-		cityother: ''
+		cityother: '',
+        netacityother:''
+
 	}
 	$scope.register = function ()
 	{
+        var data = {};
+        data.nominee=$scope.nominee;
+        server.requestPhp(data, "AddNominee").then(function (data) {
+            alert("ההרשמה הצליחה");
+        });
 		console.log($scope.nominee);
 	};
     $scope.schools = [];
-	$scope.GetSchools = function () {
-		var data={};
-		server.requestPhp(data, "GetSchools").then(function (data) {
-
-			$scope.schools = data;
-		});
-	}
-	$scope.GetSchools();
+	$scope.GetSchoolsByNetaCityId = function () {
+        var data = {};
+        data.NetaCityId = $scope.nominee.netacityid;
+        server.requestPhp(data, "GetSchoolsByNetaCityId").then(function (data) {
+            $scope.schools = data;
+        });
+    }
 
     $scope.cities = [];
     $scope.GetCities = function () {
@@ -49,5 +55,27 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
         });
     }
     $scope.GetNetaCities();
+
+    $scope.Classes = [];
+    $scope.GetClasses = function () {
+        var data={};
+        server.requestPhp(data, "GetClasses").then(function (data) {
+            $scope.Classes = data;
+        });
+    }
+    $scope.GetClasses();
+
+    $scope.HearAboutUs = [];
+    $scope.GetHearAboutUsOptions = function () {
+        var data={};
+        server.requestPhp(data, "GetHearAboutUsOptions").then(function (data) {
+            $scope.HearAboutUs = data;
+        });
+    }
+    $scope.GetHearAboutUsOptions();
+
+
+ ;
+
 }
 ]);

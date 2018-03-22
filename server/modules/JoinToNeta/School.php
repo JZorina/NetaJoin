@@ -2,15 +2,15 @@
 class School
 {
 
-    function GetCityById($cid)
+    function GetSchoolsByNetaCityId($ncid)
     {
         global $db;
-        $city = $db->smartQuery(array(
-            'sql' => "Select * FROM city where cityid = :cityid",
-            'par' => array('cityid' => $cid),
-            'ret' => 'fetch-assoc'
+        $schools = $db->smartQuery(array(
+            'sql' => "Select * FROM school where CityId = :cityid",
+            'par' => array('cityid' => $ncid),
+            'ret' => 'all'
         ));
-        return $city;
+        return $schools;
     }
 
     function GetSchools()
@@ -46,4 +46,6 @@ class School
 
         return $result;
     }
+
+
 }

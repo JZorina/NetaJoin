@@ -8,16 +8,25 @@ require_once(SERVERROOT."/modules/Gender.php");
 require_once(SERVERROOT."/modules/Religion.php");
 require_once(SERVERROOT."/modules/City.php");
 require_once(SERVERROOT."/modules/JoinToNeta/School.php");
+require_once(SERVERROOT."/modules/JoinToNeta/NetaCity.php");
+require_once(SERVERROOT."/modules/JoinToNeta/_class.php");
+require_once(SERVERROOT."/modules/JoinToNeta/HearAboutUs.php");
+require_once(SERVERROOT."/modules/JoinToNeta/Nominees.php");
+require_once(SERVERROOT."/modules/JoinToNeta/NomineeStatus.php");
+
 
 $db = new Db($conf->DB->host,$conf->DB->DBName,$conf->DB->userName,$conf->DB->pass,$conf->DB->logError);
 
-
+$NomineeStatus=new NomineeStatus();
+$Nominee=new Nominees();
 $Gender = new Gender();
 $Religion = new Religion();
 $City = new City();
-$NetaCity = new $NetaCity();
+$Class = new _class();
+$NetaCity = new NetaCity();
 $School = new School();
 $mail = new PHPMailer;
+$HearAboutUs= new HearAboutUs();
 
 
 function arrayToTrees ($arr, $id, $parentid, $nestIn)

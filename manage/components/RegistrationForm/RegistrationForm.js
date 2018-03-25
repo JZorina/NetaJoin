@@ -15,7 +15,6 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
 		hearaboutid: '',
 		hearaboutother: '',
 		schoolother: '',
-		cityother: '',
         netacityother:''
 
 	}
@@ -23,6 +22,8 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
 	{
         var data = {};
         data.nominee=$scope.nominee;
+		//var birthday = data.nominee.birthday.split(/([\/\.])+/g);
+		//data.nominee.birthday=birthday[2]+"-"+birthday[1]+"-"+birthday[0];
         server.requestPhp(data, "AddNominee").then(function (data) {
             alert("ההרשמה הצליחה");
         });

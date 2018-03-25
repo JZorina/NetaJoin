@@ -20,12 +20,12 @@
     <label>
         מספר טלפון:
     </label><br>
-    <input required type="text" ng-model="nominee.phone">
+    <input required type="text" pattern="[0-9.\-]+" ng-model="nominee.phone">
     <br>
     <label>
        מספר טלפון של הורה:
     </label><br>
-    <input required type="text" ng-model="nominee.parentphone">
+    <input required type="text" pattern="[0-9.\-]+" ng-model="nominee.parentsphone">
     <br>
     <label>
        תאריך לידה:
@@ -35,7 +35,7 @@
     <label>
        תעודת זהות:
     </label><br>
-    <input required type="text" ng-model="nominee.idnumber">
+    <input required type="text" pattern="[0-9.\-]+" ng-model="nominee.idnumber">
     <br>
     <label>
        עיר מגורים:
@@ -49,7 +49,7 @@
         <label>
             אחר:
         </label><br>
-        <input required type="text" ng-model="nominee.cityother">
+        <input required type="text" ng-model="nominee.netacityother">
         <br>
     </div>
     <label>
@@ -105,7 +105,7 @@
         <br>
     </div>
 
-    <button type="submit"> סבבה </button>
+    <button type="submit" class="submit-registration-button"> סבבה </button>
 
 
 

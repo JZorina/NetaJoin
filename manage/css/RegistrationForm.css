@@ -1,7 +1,8 @@
 :root {
     --main-bg-color: white;
-    --main-text-color: #008;
+    --main-text-color: #2F4A69;
     --field-highlight-color: #def;
+	--field-strong-highlight-color: #cdf;
 }
 
 body{
@@ -14,15 +15,21 @@ body{
 }
 #registration-form
 {
-    margin: 5% 10%;
+    margin: 0% 10%;
+    margin-top: 5%;
 }
 
 #registration-form input:hover, #registration-form select:hover
 {
     background-color:var(--field-highlight-color);
 }
+#registration-form input:focus, #registration-form select:focus
+{
+    background-color:var(--field-strong-highlight-color);
+}
 #registration-form input, #registration-form select
 {
+	outline:none;
     border: none;
     border-bottom: 1px solid var(--main-text-color);
     transition: all 0.5s;
@@ -32,4 +39,21 @@ body{
 .secondary-field{
     margin-right: 5% ;
     width: 95%;
+}
+.submit-registration-button{
+	background-color: var(--field-highlight-color);
+    border: none;
+    outline: none;
+    color: var(--main-text-color);
+    font-size: 3em;
+    font-family: Assistant;
+    padding: 0% 2%;
+    margin: 5% auto;
+    text-align: center;
+    display: block;
+	transition: all 0.2s;
+}
+.submit-registration-button:hover{
+	background-color: var(--main-text-color);
+	color: var(--field-highlight-color);
 }

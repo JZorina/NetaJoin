@@ -6,49 +6,13 @@ $conf=new stdClass();
 $conf->DB=new stdClass();
 $conf->s3=new stdClass();
 
-
-//local
+//tigris
 $conf->DB->host="localhost";
-$conf->DB->DBName="join";
-$conf->DB->userName="root";
-$conf->DB->pass="";
-$conf->s3->bucket=null;
-/**/
-/*
-//local-adham
-$conf->DB->host="localhost";
-$conf->DB->DBName="tapoah_local";
-$conf->DB->userName="root";
-$conf->DB->pass="";
-$conf->s3->bucket=null;
-/**/
-
-/*//tigris
-$conf->DB->host="82.80.210.144";
-$conf->DB->DBName="appleseedsdb";
-$conf->DB->userName="Appleseedsuser";
-$conf->DB->pass="Appleseedsuser";
+$conf->DB->DBName="applesee_digclass2";
+$conf->DB->userName="applesee_digcla2";
+$conf->DB->pass="ST7xe@7k]o@U";
 $conf->s3->bucket="null";
 /**/
-
-
-/*//tigris-V2
-$conf->DB->host="82.80.210.144";
-$conf->DB->DBName="appleseedsDBv2";
-$conf->DB->userName="Appleseedsuser";
-$conf->DB->pass="Appleseedsuser";
-$conf->s3->bucket="null";
-/**/
-/*
-//QA
-$conf->DB->host="localhost";
-$conf->DB->DBName="appleseedsqa";
-$conf->DB->userName="Appleseedsuser";
-$conf->DB->pass="Appleseedsuser";
-$conf->s3->bucket="null";
-/**/
-
-
 
 $conf->DB->logError="log/sqlError.log";
 $conf->dynamicFilePath="dynamic/";

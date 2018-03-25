@@ -13,7 +13,7 @@ class NomineeStatus
     {
         global $db;
         $Statuses = $db->smartQuery(array(
-            'sql' => "Select * FROM nomineestatus ",
+            'sql' => "Select * FROM nomineestatus ORDER BY `nomineestatusid`",
             'par' => array(),
             'ret' => 'all'
         ));

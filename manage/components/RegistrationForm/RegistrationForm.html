@@ -37,7 +37,7 @@
     <label>
        תאריך לידה:
     </label><br>
-    <input required type="date" ng-model="nominee.birthday">
+    <input required type="text" pattern="[0-9.\-\/]+" ng-model="nominee.birthday">
     <br>
     <label>
        עיר מגורים:
@@ -101,9 +101,5 @@
     </div>
 
     <button type="submit" class="submit-registration-button"> סבבה </button>
-
-
-
-
 
 </Form>

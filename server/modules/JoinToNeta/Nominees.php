@@ -11,27 +11,29 @@ class Nominees
 	function AddNominee($user)
 	{
 		global $db;
-				$result = $db->smartQuery(array(
-					'sql' => "INSERT INTO nominee (firstname,lastname,schoolid,email,phone,phoneparents,birthday,netacityid,cityid,classid,hearaboutid,hearaboutother,SchoolOther,CityOther,genderid) VALUES (:firstname,:lastname,:schoolid,:email,:phone,:phoneparents,:birthday,:netacityid,:cityid,:classid,:hearaboutid,:hearaboutother,:SchoolOther,:CityOther,:genderid)",
-					'par' => array(
-						'firstname'=>$user->firstname,
-						'lastname'=>$user->lastname,
-						'schoolid'=>$user->schoolid,
-						'email'=>$user->email,
-						'phone'=>$user->phone,
-						'phoneparents' =>$user->parentsphone,
-						'birthday'=>$user->birthday,
-						'netacityid'=>$user->netacityid,
-						'cityid'=>$user->cityid,
-						'classid' =>$user->classid,
-						'hearaboutid' =>$user->hearaboutid,
-						'hearaboutother' =>$user->hearaboutother,
-						'SchoolOther' =>$user->schoolother,
-						'CityOther' =>$user->cityother,
-                        'genderid'=>$user->genderid
-					),
-					'ret' => 'result'
-				));
+        $createdate = date("Y-m-d H:i:s");
+		$result = $db->smartQuery(array(
+			'sql' => "INSERT INTO nominee (firstname,lastname,schoolid,email,phone,phoneparents,birthday,netacityid,cityid,classid,hearaboutid,hearaboutother,SchoolOther,CityOther,genderid, RegistrationDate) VALUES (:firstname,:lastname,:schoolid,:email,:phone,:phoneparents,:birthday,:netacityid,:cityid,:classid,:hearaboutid,:hearaboutother,:SchoolOther,:CityOther,:genderid, :RegistrationDate)",
+			'par' => array(
+				'firstname'=>$user->firstname,
+				'lastname'=>$user->lastname,
+				'schoolid'=>$user->schoolid,
+				'email'=>$user->email,
+				'phone'=>$user->phone,
+				'phoneparents' =>$user->parentsphone,
+				'birthday'=>$user->birthday,
+				'netacityid'=>$user->netacityid,
+				'cityid'=>$user->cityid,
+				'classid' =>$user->classid,
+				'hearaboutid' =>$user->hearaboutid,
+				'hearaboutother' =>$user->hearaboutother,
+				'SchoolOther' =>$user->schoolother,
+				'CityOther' =>$user->cityother,
+                'genderid'=>$user->genderid,
+                'RegistrationDate'=>$createdate
+			),
+			'ret' => 'result'
+		));
 		return $result;
 	}
 
@@ -46,7 +48,7 @@ class Nominees
 		return $Nominees;
 	}
 
-	function SearchNominees($search, $sorting, $desc, $page)
+	function SearchNominees($search, $sorting, $desc, $page,$netacityfilter, $statusfilter)
 	{
 		$sortByField='nomineeid';
 		//permit only certain ORDER BY values to avoid injection
@@ -67,10 +69,13 @@ class Nominees
 				LEFT JOIN school as s ON s.schoolid = nominee.schoolid
 				LEFT JOIN city  ON city.cityid = nominee.cityid
 				LEFT JOIN netacity  AS n ON n.CityId=nominee.netacityid
+				
 				WHERE
-					  CONCAT(`firstname`,' ',`lastname`,' ',n.CityName,' ',`email`, ' ',IFNULL(hearabout.hearaboutoption, nominee.hearaboutother), ' ',  IFNULL(city.name, nominee.CityOther),' ',IFNULL(s.schoolname,nominee.SchoolOther) ) LIKE :search
+					  CONCAT(`firstname`,' ',`lastname`,' ',n.CityName,' ',`email`, ' ',IFNULL(hearabout.hearaboutoption, nominee.hearaboutother), ' ',  IFNULL(city.name, nominee.CityOther),' ',IFNULL(s.schoolname,nominee.SchoolOther) ) LIKE :search 
+					  AND (nominee.netacityid =:netacityfilter OR :netacityfilter IS NULL)
+					  AND (nominee.nomineestatusid=:statusfilter OR :statusfilter IS NULL)
 				ORDER BY ".$sortByField." ".$sortingDirection,
-			'par' => array('search'=>'%'.$search.'%'),
+			'par' => array('search'=>'%'.$search.'%', 'netacityfilter'=>$netacityfilter,'statusfilter'=>$statusfilter),
 			'ret' => 'all'
 		));
 		return cutPage($nominees, 'nominees', $page);

@@ -16,18 +16,27 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
 		hearaboutid: '',
 		hearaboutother: '',
 		schoolother: '',
-        cityother:''
+        cityother:'',
+        RegistrationDate:''
 
 	}
 	$scope.register = function ()
 	{
         var data = {};
         data.nominee=$scope.nominee;
-		//var birthday = data.nominee.birthday.split(/([\/\.])+/g);
-		//data.nominee.birthday=birthday[2]+"-"+birthday[1]+"-"+birthday[0];
+        var birthday =data.nominee.birthday;
+		birthday = birthday.split(/([\/\.])+/g);
+		console.log(birthday);
+		data.nominee.birthday=birthday[4]+"-"+birthday[2]+"-"+birthday[0];
+		if(birthday[0]>31||birthday[2]>12||birthday[4]<1900)
+        {
+            alert("נא להזין תאריך לידה תקין");
+            return;
+        }
         server.requestPhp(data, "AddNominee").then(function (data) {
-            alert("ההרשמה הצליחה");
+            $state.transitionTo('SuccessfulRegistration');
         });
+
 		console.log($scope.nominee);
 	};
     $scope.schools = [];

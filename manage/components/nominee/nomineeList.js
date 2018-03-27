@@ -6,6 +6,9 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 	$scope.pageIndex = $stateParams.page;
 	$scope.pageCount;
 	$scope.nominees=[];
+	$scope.filter={};
+    $scope.filter.netacityid=null;
+    $scope.filter.nomineestatusid=null;
 
 	$scope.alertcontrol={};
 	$scope.show=false;
@@ -23,12 +26,14 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 	$scope.getNominees = function() {
 		$scope.loading=true;
 		var search = $scope.search;
+		var netaCityFilter = $scope.filter.netacityid;
+		var nomineeStatusFilter = $scope.filter.nomineestatusid;
 		var sorting = $scope.sortingField;
 		var desc = $scope.reverseOrder;
 		var userstatus = $scope.studentStatus;
 		var page = $scope.pageIndex;
 
-		var data ={'search': search, 'sorting': sorting, 'desc':desc, 'userstatus': userstatus, 'page': page};
+		var data ={'search': search, 'netaCityFilter': netaCityFilter, 'nomineeStatusFilter':nomineeStatusFilter, 'sorting': sorting, 'desc':desc, 'userstatus': userstatus, 'page': page};
 		server.requestPhp(data, 'SearchNominees').then(function (data) {
 			$scope.nominees = data.nominees;
 			$scope.pageCount = parseInt(data.pages);
@@ -105,6 +110,14 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
         server.requestPhp(data, "UpdateNomineeStatus").then(function (data) {}
         );
     }
-    
+
+    $scope.Netacities = [];
+    $scope.GetNetaCities = function () {
+        var data={};
+        server.requestPhp(data, "GetNetaCities").then(function (data) {
+            $scope.Netacities = data;
+        });
+    }
+    $scope.GetNetaCities();
 
 } ]);

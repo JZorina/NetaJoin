@@ -118,8 +118,8 @@ class Db
 		$errorInfo[]=$par;
 		$errorInfo[]=date("Y-m-d H:i:s"); 				
 		$line = json_encode($errorInfo)."\n";
-		file_put_contents($this->logFilePath, $line, FILE_APPEND | LOCK_EX);
-		//print_r($line);
+		//file_put_contents($this->logFilePath, $line, FILE_APPEND | LOCK_EX);
+		print_r($line);
 	}
 	
 	/* returnn the last Insert ID */

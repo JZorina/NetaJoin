@@ -65,7 +65,7 @@ switch ($type) {
 
     // ------------ Nominees ------------
     case "SearchNominees" :
-        $ans = $Nominee -> SearchNominees($data->search, $data->sorting, $data->desc, $data->page );
+        $ans = $Nominee -> SearchNominees($data->search, $data->sorting, $data->desc, $data->page, $data->netaCityFilter, $data->nomineeStatusFilter);
         break;
     case "AddNominee" :
         $ans = $Nominee -> AddNominee($data->nominee);

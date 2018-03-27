@@ -87,6 +87,16 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
             }
         })
 
+        .state("SuccessfulRegistration", {
+            url: "/SuccessfulRegistration",
+            views: {
+                "main": {
+                    templateUrl: "components/SuccessfulRegistration/SuccessfulRegistration.html",
+                    controller: "SuccessfulRegistration"
+                }
+            }
+        })
+
 	;
 
 

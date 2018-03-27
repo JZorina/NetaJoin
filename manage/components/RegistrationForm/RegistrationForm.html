@@ -5,17 +5,24 @@
     </label><br>
     <input required type="text" ng-model="nominee.firstname">
     <br>
-
     <label>
         שם משפחה:
-    </label><br>
+    </label>
+    <br>
     <input required type="text" ng-model="nominee.lastname">
     <br>
-
+    <label>
+        מגדר:
+    </label>
+    <br>
+    <select required ng-model="nominee.genderid">
+        <option ng-repeat="gender in genders" ng-value="gender.genderid">{{gender.name}}</option>
+    </select>
+    <br>
     <label>
         כתובת אימייל:
     </label><br>
-    <input required type="email" ng-model="nominee.email">
+    <input type="email" ng-model="nominee.email">
     <br>
     <label>
         מספר טלפון:
@@ -33,11 +40,6 @@
     <input required type="date" ng-model="nominee.birthday">
     <br>
     <label>
-       תעודת זהות:
-    </label><br>
-    <input required type="text" pattern="[0-9.\-]+" ng-model="nominee.idnumber">
-    <br>
-    <label>
        עיר מגורים:
     </label><br>
     <select required ng-model="nominee.cityid">
@@ -49,7 +51,7 @@
         <label>
             אחר:
         </label><br>
-        <input required type="text" ng-model="nominee.netacityother">
+        <input required type="text" ng-model="nominee.cityother">
         <br>
     </div>
     <label>
@@ -57,16 +59,9 @@
     </label><br>
     <select required ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()">
         <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{NetaCity.CityName}}</option>
-        <option value="999">אחר</option>
     </select>
     <br>
-    <div class="secondary-field" ng-if="nominee.netacityid==999">
-    <label>
-        אחר:
-    </label><br>
-    <input required type="text" ng-model="nominee.netacityother">
-    <br>
-    </div>
+
     <label>
         בית ספר:
     </label><br>

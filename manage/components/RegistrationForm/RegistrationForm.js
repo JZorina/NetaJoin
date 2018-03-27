@@ -3,6 +3,7 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
 	$scope.nominee = {
 		firstname: '',
 		lastname: '',
+        genderid:'',
 		birthday: '',
 		email: '',
 		phone: '',
@@ -15,7 +16,7 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
 		hearaboutid: '',
 		hearaboutother: '',
 		schoolother: '',
-        netacityother:''
+        cityother:''
 
 	}
 	$scope.register = function ()
@@ -75,8 +76,16 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userSer
     }
     $scope.GetHearAboutUsOptions();
 
+    $scope.genders = [];
+    $scope.GetGenders = function () {
+        var data={};
+        server.requestPhp(data, "GetGenders").then(function (data) {
+            $scope.genders = data;
+        });
+    }
+    $scope.GetGenders();
 
- ;
+
 
 }
 ]);

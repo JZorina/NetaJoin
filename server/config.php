@@ -8,9 +8,9 @@ $conf->s3=new stdClass();
 
 //tigris
 $conf->DB->host="localhost";
-$conf->DB->DBName="applesee_digclass2";
-$conf->DB->userName="applesee_digcla2";
-$conf->DB->pass="ST7xe@7k]o@U";
+$conf->DB->DBName="join";
+$conf->DB->userName="root";
+$conf->DB->pass="";
 $conf->s3->bucket="null";
 /**/
 

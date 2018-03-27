@@ -12,7 +12,7 @@ class Nominees
 	{
 		global $db;
 				$result = $db->smartQuery(array(
-					'sql' => "INSERT INTO nominee (firstname,lastname,schoolid,email,phone,phoneparents,tz,birthday,netacityid,cityid,classid,hearaboutid,hearaboutother,SchoolOther,CityOther) VALUES (:firstname,:lastname,:schoolid,:email,:phone,:phoneparents,:tz,:birthday,:netacityid,:cityid,:classid,:hearaboutid,:hearaboutother,:SchoolOther,:CityOther)",
+					'sql' => "INSERT INTO nominee (firstname,lastname,schoolid,email,phone,phoneparents,birthday,netacityid,cityid,classid,hearaboutid,hearaboutother,SchoolOther,CityOther,genderid) VALUES (:firstname,:lastname,:schoolid,:email,:phone,:phoneparents,:birthday,:netacityid,:cityid,:classid,:hearaboutid,:hearaboutother,:SchoolOther,:CityOther,:genderid)",
 					'par' => array(
 						'firstname'=>$user->firstname,
 						'lastname'=>$user->lastname,
@@ -20,7 +20,6 @@ class Nominees
 						'email'=>$user->email,
 						'phone'=>$user->phone,
 						'phoneparents' =>$user->parentsphone,
-						'tz'=>$user->idnumber,
 						'birthday'=>$user->birthday,
 						'netacityid'=>$user->netacityid,
 						'cityid'=>$user->cityid,
@@ -28,14 +27,11 @@ class Nominees
 						'hearaboutid' =>$user->hearaboutid,
 						'hearaboutother' =>$user->hearaboutother,
 						'SchoolOther' =>$user->schoolother,
-						'CityOther' =>$user->netacityother
+						'CityOther' =>$user->cityother,
+                        'genderid'=>$user->genderid
 					),
 					'ret' => 'result'
 				));
-
-
-
-
 		return $result;
 	}
 
@@ -56,22 +52,23 @@ class Nominees
 		//permit only certain ORDER BY values to avoid injection
 		in_array($sorting, array(
 			'firstname', 'lastname',
-			'tz', 'cityname', 'birthday', 'email', 'NetaCityName','SchoolName','hearabout'
+			 'CityName', 'birthday', 'email', 'netacityname','SchoolName','hearabout'
 		), true)?$sortByField=$sorting:'';
 		$sortingDirection = $desc?"DESC":"ASC";
 		global $db;
 		//fetch nominees
 		$nominees = $db->smartQuery(array(
 			'sql' => "
-				SELECT nominee.*,class.classname AS 'classname' ,c.name AS 'cityname', IFNULL(g.CityName, nominee.CityOther) AS 'NetaCityName', IFNULL(s.schoolname, nominee.SchoolOther) AS 'SchoolName', IFNULL(hearabout.hearaboutoption, nominee.hearaboutother) AS 'hearabout'
+				SELECT nominee.*,gender.name AS 'gender' ,class.classname AS 'classname' ,n.CityName AS 'netacityname', IFNULL(city.name, nominee.CityOther) AS 'CityName', IFNULL(s.schoolname, nominee.SchoolOther) AS 'SchoolName', IFNULL(hearabout.hearaboutoption, nominee.hearaboutother) AS 'hearabout', nominee.phoneparents  AS 'Parentphone'
 				FROM nominee
+				LEFT JOIN gender ON gender.genderid=nominee.genderid
 				LEFT JOIN class ON class.classid=nominee.classid
 				LEFT JOIN hearabout ON hearabout.hearaboutid=nominee.hearaboutid
 				LEFT JOIN school as s ON s.schoolid = nominee.schoolid
-				LEFT JOIN city as c ON c.cityid = nominee.cityid
-				LEFT JOIN netacity as g ON g.CityId=nominee.netacityid
+				LEFT JOIN city  ON city.cityid = nominee.cityid
+				LEFT JOIN netacity  AS n ON n.CityId=nominee.netacityid
 				WHERE
-					  CONCAT(`firstname`,' ',`lastname`,' ',`tz`,' ',c.name,' ',`email`, ' ',IFNULL(hearabout.hearaboutoption, nominee.hearaboutother), ' ',  IFNULL(g.CityName, nominee.CityOther),' ',IFNULL(s.schoolname,nominee.SchoolOther)) LIKE :search
+					  CONCAT(`firstname`,' ',`lastname`,' ',n.CityName,' ',`email`, ' ',IFNULL(hearabout.hearaboutoption, nominee.hearaboutother), ' ',  IFNULL(city.name, nominee.CityOther),' ',IFNULL(s.schoolname,nominee.SchoolOther) ) LIKE :search
 				ORDER BY ".$sortByField." ".$sortingDirection,
 			'par' => array('search'=>'%'.$search.'%'),
 			'ret' => 'all'

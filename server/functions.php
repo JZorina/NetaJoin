@@ -13,8 +13,6 @@ require_once(SERVERROOT."/modules/JoinToNeta/_class.php");
 require_once(SERVERROOT."/modules/JoinToNeta/HearAboutUs.php");
 require_once(SERVERROOT."/modules/JoinToNeta/Nominees.php");
 require_once(SERVERROOT."/modules/JoinToNeta/NomineeStatus.php");
-
-
 $db = new Db($conf->DB->host,$conf->DB->DBName,$conf->DB->userName,$conf->DB->pass,$conf->DB->logError);
 
 $NomineeStatus=new NomineeStatus();

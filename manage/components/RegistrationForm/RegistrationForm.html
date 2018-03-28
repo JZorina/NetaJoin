@@ -1,7 +1,14 @@
 <Form ng-submit="register()" id="registration-form">
     <br>
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.firstnameinarabic}}:
+        </label><br>
+        <input required type="text" ng-model="nominee.firstname">
+        <br>
+    </div>
     <label>
-        שם פרטי:
+       {{dictionary.firstname}}:
     </label><br>
     <input required type="text" ng-model="nominee.firstname">
     <br>

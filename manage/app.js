@@ -78,7 +78,7 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
 			}
 		})
         .state("RegistrationForm", {
-            url: "/RegistrationForm",
+            url: "/RegistrationForm/:lang",
             views: {
                 "main": {
                     templateUrl: "components/RegistrationForm/RegistrationForm.html",

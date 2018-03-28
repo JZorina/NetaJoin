@@ -1,5 +1,17 @@
-apple.controller('RegistrationForm', ['$rootScope', '$scope', '$state', 'userService', 'server', function ($rootScope, $scope, $state, userService, server) {
-
+apple.controller('RegistrationForm', ['$rootScope', '$scope', '$stateParams', '$state', 'userService', 'server', function ($rootScope, $scope, $stateParams, $state, userService, server) {
+var dictionary ={
+    'he':{
+        'firstname':'שם פרטי',
+        'lastname':'שם משפחה',
+        'gender':'מגדר'
+    },
+    'ar':{
+        'firstname':'first name',
+        'firstnameinarabic':'firstname in arabic'
+    }
+}
+$scope.isArabic = $stateParams["lang"]=='ar';
+    $scope.dictionary=dictionary[$stateParams["lang"]];
 	$scope.nominee = {
 		firstname: '',
 		lastname: '',

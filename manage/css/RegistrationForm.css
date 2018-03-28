@@ -1,8 +1,8 @@
 :root {
-    --main-bg-color: white;
-    --main-text-color: #2F4A69;
-    --field-highlight-color: #def;
-	--field-strong-highlight-color: #cdf;
+    --main-bg-color: #284B62;
+    --main-text-color: white;
+    --field-highlight-color: #1CEB97;
+	--field-strong-highlight-color: #039962;
 }
 
 body{
@@ -31,7 +31,8 @@ body{
 {
 	outline:none;
     border: none;
-    border-bottom: 1px solid var(--main-text-color);
+    border: 1px solid var(--field-highlight-color);
+    background-color: var(--main-bg-color);
     transition: all 0.5s;
     width: 100%;
     margin-bottom: 1%;

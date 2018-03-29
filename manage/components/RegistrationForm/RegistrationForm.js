@@ -6,8 +6,10 @@ var dictionary ={
         'gender':'מגדר'
     },
     'ar':{
-        'firstname':'first name',
-        'firstnameinarabic':'firstname in arabic'
+        'firstname':'שם פרטי ',
+        'firstnameinarabic':'firstname in arabic',
+        'lastname':'שם משפחה ',
+        'lastnameinarabic':'lastname in arabic'
     }
 }
 $scope.isArabic = $stateParams["lang"]=='ar';

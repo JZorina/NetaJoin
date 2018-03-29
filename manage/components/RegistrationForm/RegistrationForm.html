@@ -7,8 +7,15 @@
         <input required type="text" ng-model="nominee.firstname">
         <br>
     </div>
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.lastnameinarabic}}:
+        </label><br>
+        <input required type="text" ng-model="nominee.lastname">
+        <br>
+    </div>
     <label>
-       {{dictionary.firstname}}:
+        שם פרטי:
     </label><br>
     <input required type="text" ng-model="nominee.firstname">
     <br>

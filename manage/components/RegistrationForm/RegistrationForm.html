@@ -4,14 +4,14 @@
         <label>
             {{dictionary.firstnameinarabic}}:
         </label><br>
-        <input required type="text" ng-model="nominee.firstname">
+        <input required type="text" ng-model="nominee.firstnameinarabic">
         <br>
     </div>
     <div ng-if="isArabic">
         <label>
             {{dictionary.lastnameinarabic}}:
         </label><br>
-        <input required type="text" ng-model="nominee.lastname">
+        <input required type="text" ng-model="nominee.lastnameinarabic">
         <br>
     </div>
     <label>
@@ -30,7 +30,7 @@
     </label>
     <br>
     <select required ng-model="nominee.genderid">
-        <option ng-repeat="gender in genders" ng-value="gender.genderid">{{gender.name}}</option>
+        <option ng-repeat="gender in genders" ng-value="gender.genderid">{{isArabic?gender.nameinarabic:gender.name}}</option>
     </select>
     <br>
     <label>
@@ -57,7 +57,7 @@
        עיר מגורים:
     </label><br>
     <select required ng-model="nominee.cityid">
-        <option ng-repeat="city in cities" ng-value="city.cityid">{{city.name}}</option>
+        <option ng-repeat="city in cities" ng-value="city.cityid">{{isArabic?city.ArabicCityName:city.name}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
@@ -72,7 +72,7 @@
         עיר פעילות בתוכנית:
     </label><br>
     <select required ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()">
-        <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{NetaCity.CityName}}</option>
+        <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{isArabic?NetaCity.ArabicCityName:NetaCity.CityName}}</option>
     </select>
     <br>
 
@@ -80,7 +80,7 @@
         בית ספר:
     </label><br>
     <select required ng-model="nominee.schoolid">
-        <option ng-repeat="school in schools" ng-value="school.schoolid">{{school.schoolname}}</option>
+        <option ng-repeat="school in schools" ng-value="school.schoolid">{{isArabic?school.ArabicSchoolName:school.schoolname}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
@@ -95,14 +95,14 @@
         כיתה:
     </label><br>
     <select required ng-model="nominee.classid">
-        <option ng-repeat="class in Classes" ng-value="class.classid">{{class.classname}}</option>
+        <option ng-repeat="class in Classes" ng-value="class.classid">{{isArabic?class.ArabicClassName:class.classname}}</option>
     </select>
     <br>
     <label>
         כיצד הגעת עלינו?
     </label><br>
     <select required ng-model="nominee.hearaboutid">
-        <option ng-repeat="HearAbout in HearAboutUs" ng-value="HearAbout.hearaboutid">{{HearAbout.hearaboutoption}}</option>
+        <option ng-repeat="HearAbout in HearAboutUs" ng-value="HearAbout.hearaboutid">{{isArabic?HearAbout.ArabicHearAbout:HearAbout.hearaboutoption}}</option>
         <option value="999">אחר</option>
     </select>
     <br>

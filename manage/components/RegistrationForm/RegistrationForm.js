@@ -9,10 +9,23 @@ var dictionary ={
         'firstname':'שם פרטי ',
         'firstnameinarabic':'firstname in arabic',
         'lastname':'שם משפחה ',
-        'lastnameinarabic':'lastname in arabic'
+        'lastnameinarabic':'lastname in arabic',
+        'cityinarabic':'city in arabic',
+        'elseinarabic':'else in arabic',
+        'netacityinarabic':'Nate city in arabic',
+        'schoolinarabic':'School in arabic',
+        'classinarabic':'Class in arabic',
+        'hearaboutus':'How didi you hear about us in arabic?',
+        'genderinarabic':'Gender in arabic',
+        'emailinarabic':'Email address in arabic',
+        'phonenumberarabic':'Phone number in arabic',
+        'parentsphonenumberarabic':'Parent phone number in arabic',
+        'birthdayinarabic':'Birthday in arabic'
+
     }
 }
 $scope.isArabic = $stateParams["lang"]=='ar';
+    $scope.isHebrew = $stateParams["lang"]=='he';
     $scope.dictionary=dictionary[$stateParams["lang"]];
 	$scope.nominee = {
 		firstname: '',

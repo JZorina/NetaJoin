@@ -7,6 +7,13 @@
         <input required type="text" ng-model="nominee.firstnameinarabic">
         <br>
     </div>
+    <div ng-if ="isHebrew">
+        <label>
+            שם פרטי:
+        </label><br>
+        <input required type="text" ng-model="nominee.firstname">
+    </div>
+
     <div ng-if="isArabic">
         <label>
             {{dictionary.lastnameinarabic}}:
@@ -14,106 +21,202 @@
         <input required type="text" ng-model="nominee.lastnameinarabic">
         <br>
     </div>
-    <label>
-        שם פרטי:
-    </label><br>
-    <input required type="text" ng-model="nominee.firstname">
-    <br>
-    <label>
-        שם משפחה:
-    </label>
-    <br>
-    <input required type="text" ng-model="nominee.lastname">
-    <br>
+
+    <div ng-if ="isHebrew">
+        <label>
+            שם משפחה:
+        </label><br>
+        <input required type="text" ng-model="nominee.lastname">
+        <br>
+    </div>
+
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.genderinarabic}}:
+        </label><br>
+    </div>
+
+    <div ng-if ="isHebrew">
     <label>
         מגדר:
     </label>
     <br>
+    </div>
     <select required ng-model="nominee.genderid">
         <option ng-repeat="gender in genders" ng-value="gender.genderid">{{isArabic?gender.nameinarabic:gender.name}}</option>
     </select>
     <br>
-    <label>
+
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.emailinarabic}}:
+        </label><br>
+    </div>
+
+    <div ng-if ="isHebrew">
+        <label>
         כתובת אימייל:
-    </label><br>
+        </label>
+        <br>
+    </div>
     <input type="email" ng-model="nominee.email">
     <br>
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.phonenumberarabic}}:
+        </label><br>
+    </div>
+    <div ng-if ="isHebrew">
     <label>
         מספר טלפון:
     </label><br>
+    </div>
     <input required type="text" pattern="[0-9.\-]+" ng-model="nominee.phone">
     <br>
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.parentsphonenumberarabic}}:
+        </label><br>
+    </div>
+    <div ng-if ="isHebrew">
     <label>
        מספר טלפון של הורה:
     </label><br>
+    </div>
     <input required type="text" pattern="[0-9.\-]+" ng-model="nominee.parentsphone">
     <br>
-    <label>
+
+        <div ng-if ="isHebrew">
+            <label>
        תאריך לידה:
-    </label><br>
+        </label><br>
+        </div>
+        <div ng-if="isArabic">
+        <label>
+            {{dictionary.birthdayinarabic}}:
+        </label><br>
+        </div>
     <input required type="text" pattern="[0-9.\-\/]+" ng-model="nominee.birthday">
     <br>
+    <div ng-if="isArabic">
+        <label>
+            {{dictionary.cityinarabic}}:
+        </label><br>
+    </div>
+    <div ng-if ="isHebrew">
     <label>
        עיר מגורים:
     </label><br>
+    </div>
     <select required ng-model="nominee.cityid">
         <option ng-repeat="city in cities" ng-value="city.cityid">{{isArabic?city.ArabicCityName:city.name}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
     <div class="secondary-field" ng-if="nominee.cityid==999">
-        <label>
+        <div ng-if ="isHebrew">
+            <label>
             אחר:
-        </label><br>
+            </label><br>
+        </div>
+        <div ng-if ="isArabic">
+            <label>
+                {{dictionary.elseinarabic}}:
+            </label><br>
+        </div>
         <input required type="text" ng-model="nominee.cityother">
         <br>
     </div>
+    <div ng-if ="isHebrew">
     <label>
         עיר פעילות בתוכנית:
     </label><br>
+    </div>
+    <div ng-if ="isArabic">
+        <label>
+            {{dictionary.netacityinarabic}}:
+        </label><br>
+    </div>
     <select required ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()">
         <option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{isArabic?NetaCity.ArabicCityName:NetaCity.CityName}}</option>
     </select>
     <br>
-
+    <div ng-if ="isHebrew">
     <label>
         בית ספר:
     </label><br>
+    </div>
+    <div ng-if ="isArabic">
+        <label>
+            {{dictionary.schoolinarabic}}:
+        </label><br>
+    </div>
     <select required ng-model="nominee.schoolid">
         <option ng-repeat="school in schools" ng-value="school.schoolid">{{isArabic?school.ArabicSchoolName:school.schoolname}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
     <div class="secondary-field" ng-if="nominee.schoolid==999">
-        <label>
-            אחר:
-        </label><br>
+        <div ng-if ="isHebrew">
+            <label>
+                אחר:
+            </label><br>
+        </div>
+        <div ng-if ="isArabic">
+            <label>
+                {{dictionary.elseinarabic}}:
+            </label><br>
+        </div>
         <input required type="text" ng-model="nominee.schoolother">
         <br>
     </div>
+    <div ng-if ="isHebrew">
     <label>
         כיתה:
     </label><br>
+    </div>
+    <div ng-if ="isArabic">
+        <label>
+            {{dictionary.classinarabic}}:
+        </label><br>
+    </div>
     <select required ng-model="nominee.classid">
         <option ng-repeat="class in Classes" ng-value="class.classid">{{isArabic?class.ArabicClassName:class.classname}}</option>
     </select>
     <br>
-    <label>
-        כיצד הגעת עלינו?
-    </label><br>
+    <div ng-if ="isHebrew">
+        <label>
+            איך שמעת אלינו?
+        </label><br>
+    </div>
+    <div ng-if ="isArabic">
+        <label>
+            {{dictionary.hearaboutus}}:
+        </label><br>
+    </div>
     <select required ng-model="nominee.hearaboutid">
         <option ng-repeat="HearAbout in HearAboutUs" ng-value="HearAbout.hearaboutid">{{isArabic?HearAbout.ArabicHearAbout:HearAbout.hearaboutoption}}</option>
         <option value="999">אחר</option>
     </select>
     <br>
     <div  class="secondary-field" ng-if="nominee.hearaboutid==999">
-        <label>
-            אחר:
-        </label><br>
+        <div ng-if ="isHebrew">
+            <label>
+                אחר:
+            </label><br>
+        </div>
+        <div ng-if ="isArabic">
+            <label>
+                {{dictionary.elseinarabic}}:
+            </label><br>
+        </div>
         <input required type="text" ng-model="nominee.hearaboutother">
         <br>
     </div>
-
-    <button type="submit" class="submit-registration-button"> סבבה </button>
-
+    <div ng-if ="isArabic">
+    <button type="submit" class="submit-registration-button"> סבבה בערבית </button>
+    </div>
+    <div ng-if ="isHebrew">
+        <button type="submit" class="submit-registration-button"> סבבה  </button>
+    </div>
 </Form>

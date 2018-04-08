@@ -1,31 +1,43 @@
 apple.controller('RegistrationForm', ['$rootScope', '$scope', '$stateParams', '$state', 'userService', 'server', function ($rootScope, $scope, $stateParams, $state, userService, server) {
 var dictionary ={
     'he':{
-        'firstname':'שם פרטי',
+    	'firstname':'שם פרטי',
+        'firstnameinarabic':'שם פרטי בערבית',
         'lastname':'שם משפחה',
-        'gender':'מגדר'
+        'lastnameinarabic':'שם משפחה בערבית',
+        'city':'עיר מגורים',
+        'netacity':'עיר פעילות נטע@',
+        'school':'בית ספר',
+        'grade':'כיתה',
+        'learnaboutus':'איך שמעת עלינו?',
+        'gender':'מגדר',
+        'email':'אימייל',
+        'phonenumber':'מספר טלפון',
+        'parentsphonenumber':'מספר  טלפון של הורים',
+        'birthday':'תאריך לידה',
+        'else':'אחר',
+        'submit':'סבבה'
     },
     'ar':{
-        'firstname':'שם פרטי ',
-        'firstnameinarabic':'firstname in arabic',
-        'lastname':'שם משפחה ',
-        'lastnameinarabic':'lastname in arabic',
-        'cityinarabic':'city in arabic',
-        'elseinarabic':'else in arabic',
-        'netacityinarabic':'Nate city in arabic',
-        'schoolinarabic':'School in arabic',
-        'classinarabic':'Class in arabic',
-        'hearaboutus':'How didi you hear about us in arabic?',
-        'genderinarabic':'Gender in arabic',
-        'emailinarabic':'Email address in arabic',
-        'phonenumberarabic':'Phone number in arabic',
-        'parentsphonenumberarabic':'Parent phone number in arabic',
-        'birthdayinarabic':'Birthday in arabic'
-
+    	'firstname':'first name',
+        'firstnameinarabic':'first name ar',
+        'lastname':'last name',
+        'lastnameinarabic':'last name ar',
+        'city':'city',
+        'netacity':'neta city',
+        'school':'school',
+        'grade':'grade',
+        'learnaboutus':'how did you learn about us?',
+        'gender':'gender',
+        'email':'email',
+        'phonenumber':'phone number',
+        'parentsphonenumber':'parents\' phone num',
+        'birthday':'birthday',
+        'else':'other',
+        'submit':'sababa'
     }
 }
-$scope.isArabic = $stateParams["lang"]=='ar';
-    $scope.isHebrew = $stateParams["lang"]=='he';
+	$scope.isArabic = $stateParams["lang"]=='ar';
     $scope.dictionary=dictionary[$stateParams["lang"]];
 	$scope.nominee = {
 		firstname: '',

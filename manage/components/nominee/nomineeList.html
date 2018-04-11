@@ -12,13 +12,15 @@
 			</div>
 
             <div>
-                <select ng-model="filter.netacityid" ng-change="refreshResults();" ng-options="NetaCity.CityId as NetaCity.CityName for NetaCity in Netacities">
+			סינון לפי עיר פעילות
+                <select class="form-input search-bar" ng-model="filter.netacityid" ng-change="refreshResults();" ng-options="NetaCity.CityId as NetaCity.CityName for NetaCity in Netacities">
                     <option value=""></option>
                 </select>
             </div>
 
             <div>
-                <select ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+			סינון לפי סטטוס
+                <select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
                     <option value=""></option>
                 </select>
             </div>

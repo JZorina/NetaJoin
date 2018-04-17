@@ -62,3 +62,7 @@
 	background-color: var(--main-text-color);
 	color: var(--field-highlight-color);
 }
+.required:after {
+    color: red;
+    content: '*';
+}

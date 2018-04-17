@@ -8,6 +8,7 @@ var dictionary ={
         'city':'עיר מגורים',
         'netacity':'עיר פעילות נטע@',
         'school':'בית ספר',
+        'Neighberhood':'שכונה',
         'grade':'כיתה',
         'learnaboutus':'איך שמעת עלינו?',
         'gender':'מגדר',
@@ -26,6 +27,7 @@ var dictionary ={
         'city':'city',
         'netacity':'neta city',
         'school':'school',
+        'Neighberhood':'Neighberhood',
         'grade':'grade',
         'learnaboutus':'how did you learn about us?',
         'gender':'gender',
@@ -56,7 +58,8 @@ var dictionary ={
 		hearaboutother: '',
 		schoolother: '',
         cityother:'',
-        RegistrationDate:''
+        RegistrationDate:'',
+        Neighberhood:''
 
 	}
 	$scope.register = function ()

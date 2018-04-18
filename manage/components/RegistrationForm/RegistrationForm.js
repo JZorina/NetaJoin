@@ -1,51 +1,13 @@
 apple.controller('RegistrationForm', ['$rootScope', '$scope', '$stateParams', '$state', 'userService', 'server', function ($rootScope, $scope, $stateParams, $state, userService, server) {
-var dictionary ={
-    'he':{
-    	'firstname':'שם פרטי',
-        'firstnameinarabic':'שם פרטי בערבית',
-        'lastname':'שם משפחה',
-        'lastnameinarabic':'שם משפחה בערבית',
-        'city':'עיר מגורים',
-        'netacity':'עיר פעילות נטע@',
-        'school':'בית ספר',
-        'Neighberhood':'שכונה',
-        'grade':'כיתה',
-        'learnaboutus':'איך שמעת עלינו?',
-        'gender':'מגדר',
-        'email':'אימייל',
-        'phonenumber':'מספר טלפון',
-        'parentsphonenumber':'מספר  טלפון של הורים',
-        'birthday':'תאריך לידה',
-        'else':'אחר',
-        'submit':'סבבה'
-    },
-    'ar':{
-    	'firstname':'first name',
-        'firstnameinarabic':'first name ar',
-        'lastname':'last name',
-        'lastnameinarabic':'last name ar',
-        'city':'city',
-        'netacity':'neta city',
-        'school':'school',
-        'Neighberhood':'Neighberhood',
-        'grade':'grade',
-        'learnaboutus':'how did you learn about us?',
-        'gender':'gender',
-        'email':'email',
-        'phonenumber':'phone number',
-        'parentsphonenumber':'parents\' phone num',
-        'birthday':'birthday',
-        'else':'other',
-        'submit':'sababa'
-    }
-}
 	$scope.isArabic = $stateParams["lang"]=='ar';
     $scope.dictionary=dictionary[$stateParams["lang"]];
 	$scope.nominee = {
 		firstname: '',
 		lastname: '',
+		firstnameinarabic: '',
+		lastnameinarabic: '',
         genderid:'',
-		birthday: '',
+		birthday: {"date":null},
 		email: '',
 		phone: '',
 		parentsphone: '',
@@ -59,27 +21,17 @@ var dictionary ={
 		schoolother: '',
         cityother:'',
         RegistrationDate:'',
-        Neighberhood:''
+        neighborhood:''
 
 	}
 	$scope.register = function ()
 	{
         var data = {};
         data.nominee=$scope.nominee;
-        var birthday =data.nominee.birthday;
-		birthday = birthday.split(/([\/\.])+/g);
-		console.log(birthday);
-		data.nominee.birthday=birthday[4]+"-"+birthday[2]+"-"+birthday[0];
-		if(birthday[0]>31||birthday[2]>12||birthday[4]<1900)
-        {
-            alert("נא להזין תאריך לידה תקין");
-            return;
-        }
+        data.nominee.birthday = data.nominee.birthday.date;
         server.requestPhp(data, "AddNominee").then(function (data) {
             $state.transitionTo('SuccessfulRegistration');
         });
-
-		console.log($scope.nominee);
 	};
     $scope.schools = [];
 	$scope.GetSchoolsByNetaCityId = function () {
@@ -135,8 +87,5 @@ var dictionary ={
         });
     }
     $scope.GetGenders();
-
-
-
 }
 ]);

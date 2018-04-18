@@ -10,20 +10,23 @@
 				<input type="text" class="form-input search-bar" placeholder="חיפוש מועמד" ng-model="search" ng-keyup="$event.keyCode == 13?pageIndex=0:''; $event.keyCode == 13?refreshResults():'';">
 				<div class="clickable search-button" ng-click="pageIndex=0; refreshResults();"><i class="fa fa-search" aria-hidden="true" ng-click="$event.keyCode == 13?pageIndex=0:''; $event.keyCode == 13?refreshResults():'';"></i></div>
 			</div>
-
-            <div>
-			סינון לפי עיר פעילות
-                <select class="form-input search-bar" ng-model="filter.netacityid" ng-change="refreshResults();" ng-options="NetaCity.CityId as NetaCity.CityName for NetaCity in Netacities">
-                    <option value=""></option>
-                </select>
+			<hr></hr>
+			<div class="results-filters-wrap">
+	            <div class="results-filter">
+				סינון לפי עיר פעילות
+	                <select class="form-input search-bar" ng-model="filter.netacityid" ng-change="refreshResults();" ng-options="NetaCity.CityId as NetaCity.CityName for NetaCity in Netacities">
+	                    <option value=""></option>
+	                </select>
+	            </div>
+	
+	            <div class="results-filter">
+				סינון לפי סטטוס
+	                <select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+	                    <option value=""></option>
+	                </select>
+	            </div>
             </div>
-
-            <div>
-			סינון לפי סטטוס
-                <select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
-                    <option value=""></option>
-                </select>
-            </div>
+            <hr></hr>
 
 			<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
 			<div class="scrolling-table-wrapper">

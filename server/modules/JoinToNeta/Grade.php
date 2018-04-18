@@ -6,7 +6,7 @@
  * Time: 02:09 PM
  */
 
-class _class
+class Grade
 {
     function GetClasses()
     {

@@ -13,12 +13,15 @@ class Nominees
 		global $db;
         $createdate = date("Y-m-d H:i:s");
 		$result = $db->smartQuery(array(
-			'sql' => "INSERT INTO nominee (firstname,lastname,schoolid,Neighberhood,email,phone,phoneparents,birthday,netacityid,cityid,classid,hearaboutid,hearaboutother,SchoolOther,CityOther,genderid, RegistrationDate,firstnameinarabic,lastnameinarabic) VALUES (:firstname,:lastname,:schoolid,:Neighberhood,:email,:phone,:phoneparents,:birthday,:netacityid,:cityid,:classid,:hearaboutid,:hearaboutother,:SchoolOther,:CityOther,:genderid, :RegistrationDate,:firstnameinarabic,:lastnameinarabic)",
+			'sql' => "INSERT INTO nominee(
+                firstname,lastname,schoolid,neighborhood,email,phone,phoneparents,birthday,netacityid,cityid,classid,hearaboutid,hearaboutother,SchoolOther,CityOther,genderid, RegistrationDate,firstnameinarabic,lastnameinarabic   
+                ) VALUES (
+                :firstname,:lastname,:schoolid,:neighborhood,:email,:phone,:phoneparents,:birthday,:netacityid,:cityid,:classid,:hearaboutid,:hearaboutother,:SchoolOther,:CityOther,:genderid, :RegistrationDate,:firstnameinarabic,:lastnameinarabic)",
 			'par' => array(
 				'firstname'=>$user->firstname,
 				'lastname'=>$user->lastname,
 				'schoolid'=>$user->schoolid,
-                'Neighberhood'=>$user->Neighberhood,
+			    'neighborhood'=>$user->neighborhood,
 				'email'=>$user->email,
 				'phone'=>$user->phone,
 				'phoneparents' =>$user->parentsphone,

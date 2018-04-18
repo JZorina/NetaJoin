@@ -55,8 +55,9 @@
 
 	<label class="required">{{dictionary.birthday}}: </label>
 	<br>
-
-	<input required id="date" type="date" ng-model="nominee.birthday">
+	<div style="max-width: 17em;">
+		<date-input-boxes required="true" min="1940" max="2018" date-model="nominee.birthday" placeholder-year="dictionary.year" placeholder-month="dictionary.month" placeholder-day="dictionary.day"></date-input-boxes>
+	</div>
 	<br>
 	
 	<label class="required">{{dictionary.city}}: </label>
@@ -96,9 +97,9 @@
 		<br>
 	</div>
 	<div >
-		<label>{{dictionary.Neighberhood}}: </label>
+		<label>{{dictionary.neighborhood}}: </label>
 		<br>
-		<input required type="text" ng-model="nominee.Neighberhood">
+		<input type="text" ng-model="nominee.neighborhood">
 		<br>
 	</div>
 	<label class="required">{{dictionary.grade}}: </label>

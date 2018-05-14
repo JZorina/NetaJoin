@@ -75,7 +75,6 @@ class Nominees
 				LEFT JOIN school as s ON s.schoolid = nominee.schoolid
 				LEFT JOIN city  ON city.cityid = nominee.cityid
 				LEFT JOIN netacity  AS n ON n.CityId=nominee.netacityid
-				
 				WHERE
 					  CONCAT(`firstname`,' ',`lastname`,' ',n.CityName,' ',`email`, ' ',IFNULL(hearabout.hearaboutoption, nominee.hearaboutother), ' ',  IFNULL(city.name, nominee.CityOther),' ',IFNULL(s.schoolname,nominee.SchoolOther) ) LIKE :search 
 					  AND (nominee.netacityid =:netacityfilter OR :netacityfilter IS NULL)

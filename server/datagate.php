@@ -14,9 +14,33 @@ $data = new StdClass;
 $data = json_decode(file_get_contents("php://input"));
 
 switch ($type) {
+    // ------------ Cities ------------
+    case "GetCities" :
+        $ans = $City -> GetCities();
+        break;
+    case "AddCity" :
+        if ($me['type'] == 'admin')
+            $ans = $City -> AddCities($data->cities);
+            break;
     case "GetNetaCities" :
         $ans = $NetaCity -> GetNetaCities();
         break;
+        // ------------ Genders ------------
+    case "GetGenders" :
+        $ans = $Gender -> GetGenders();
+        break;
+    case "AddGender" :
+        if ($me['type'] == 'admin')
+            $ans = $Gender -> AddGender($data->genders);
+            break;
+            // ------------ Religions ------------
+    case "GetReligions" :
+        $ans = $Religion -> GetReligions();
+        break;
+    case "AddReligion" :
+        if ($me['type'] == 'admin')
+            $ans = $Religion -> AddReligion($data->religions);
+            break;
     // ------------ Schools ------------
     case "GetSchools" :
         $ans = $School -> GetSchools();

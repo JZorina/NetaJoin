@@ -14,7 +14,7 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$stateParams', '$
 		idnumber: '',
 		schoolid: '',
 		classid: '',
-		cityid: '',
+		cityid: null,
 		netacityid: '',
 		hearaboutid: '',
 		hearaboutother: '',

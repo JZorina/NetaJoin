@@ -24,8 +24,12 @@ apple.controller('RegistrationForm', ['$rootScope', '$scope', '$stateParams', '$
         neighborhood:''
 
 	}
+	$scope.submitted=false;
 	$scope.register = function ()
 	{
+		if($scope.submitted)
+			return;
+		$scope.submitted=true;
         var data = {};
         data.nominee=$scope.nominee;
         data.nominee.birthday = data.nominee.birthday.date;

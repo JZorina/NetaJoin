@@ -4,6 +4,9 @@ apple.service('userService',['$q', '$state','$rootScope', 'server', function($q,
 }]);
 
 apple.run(function ($rootScope, $timeout, $state, userService, $document, server) {
+	$rootScope.$on('$viewContentLoaded', function() {
+	      $templateCache.removeAll();
+	   });
 })
 
 /**** UI Router ****/
@@ -87,7 +90,7 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
             }
         })
         .state("EditNetaCityAndSchool", {
-            url: "/EditNetaCityAndSchool/:lang",
+            url: "/EditNetaCityAndSchool",
             views: {
                 "main": {
                     templateUrl: "components/EditNetaCityAndSchool/EditNetaCityAndSchool.html",
@@ -97,7 +100,7 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
         })
 
         .state("EditClass", {
-            url: "/EditClass/:lang",
+            url: "/EditClass",
             views: {
                 "main": {
                     templateUrl: "components/EditClass/EditClass.html",
@@ -107,7 +110,7 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
         })
 
         .state("EditHearAboutUs", {
-            url: "/EditHearAboutUs/:lang",
+            url: "/EditHearAboutUs",
             views: {
                 "main": {
                     templateUrl: "components/EditHearAboutUs/EditHearAboutUs.html",
@@ -116,7 +119,7 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
             }
         })
         .state("EditStatus", {
-            url: "/EditStatus/:lang",
+            url: "/EditStatus",
             views: {
                 "main": {
                     templateUrl: "components/EditStatus/EditStatus.html",

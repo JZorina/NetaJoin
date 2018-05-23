@@ -54,6 +54,10 @@ switch ($type) {
     case "GetClasses" :
         $ans = $Grade -> GetClasses();
         break;
+    case "AddClass" :
+        if ($me['type'] == 'admin')
+            $ans = $Grade -> AddClass($data->classes);
+        break;
 
     // ------------ HearAboutUs ------------
     case "GetHearAboutUsOptions" :

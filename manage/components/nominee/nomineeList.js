@@ -1,5 +1,5 @@
-apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams','userService', 'server', function ($rootScope, $scope, $state, $stateParams, userService, server) {	
-		
+apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams','userService', 'server', function ($rootScope, $scope, $state, $stateParams, userService, server) {
+
 	$scope.search=$stateParams.search;
 	$scope.sortingField=$stateParams.sorting?$stateParams.sorting:"studentid";
 	$scope.reverseOrder=$stateParams.desc;
@@ -78,7 +78,7 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 			$scope.refreshResults();
 		}
 	}
-	
+
 	$scope.sortBy = function(sortIndex)
 	{
 		console.log(sortIndex);
@@ -119,5 +119,8 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
         });
     }
     $scope.GetNetaCities();
+
+
+
 
 } ]);

@@ -86,9 +86,47 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
                 }
             }
         })
+        .state("EditNetaCityAndSchool", {
+            url: "/EditNetaCityAndSchool/:lang",
+            views: {
+                "main": {
+                    templateUrl: "components/EditNetaCityAndSchool/EditNetaCityAndSchool.html",
+                    controller: "EditNetaCityAndSchool"
+                }
+            }
+        })
+
+        .state("EditClass", {
+            url: "/EditClass/:lang",
+            views: {
+                "main": {
+                    templateUrl: "components/EditClass/EditClass.html",
+                    controller: "EditClass"
+                }
+            }
+        })
+
+        .state("EditHearAboutUs", {
+            url: "/EditHearAboutUs/:lang",
+            views: {
+                "main": {
+                    templateUrl: "components/EditHearAboutUs/EditHearAboutUs.html",
+                    controller: "EditHearAboutUs"
+                }
+            }
+        })
+        .state("EditStatus", {
+            url: "/EditStatus/:lang",
+            views: {
+                "main": {
+                    templateUrl: "components/EditStatus/EditStatus.html",
+                    controller: "EditStatus"
+                }
+            }
+        })
 
         .state("SuccessfulRegistration", {
-            url: "/SuccessfulRegistration",
+            url: "/SuccessfulRegistration/:lang",
             views: {
                 "main": {
                     templateUrl: "components/SuccessfulRegistration/SuccessfulRegistration.html",

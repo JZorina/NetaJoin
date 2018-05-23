@@ -25,15 +25,22 @@
 	                    <option value=""></option>
 	                </select>
 	            </div>
+				<div class="results-filter">
+					שינוי סטטוס
+					<select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+						<option value=""></option>
+					</select>
+				</div>
             </div>
             <hr></hr>
 
 			<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
 			<div class="scrolling-table-wrapper">
 				<div class="scrolling-table clickable">
-					<table class="table-striped table-bordered table-hover midrows">
+					<table id="nomineeId"class="table-striped table-bordered table-hover midrows">
 						<thead>
 							<tr>
+								<th sorter-table-header field-index="" field-text="" sort-by-field="" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
 								<th sorter-table-header field-index="'netacityname'" field-text="'עיר פעילות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
 								<th sorter-table-header field-index="'nomineestatus'" field-text="'סטטוס'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
 								<th sorter-table-header field-index="'firstname'" field-text="'שם'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
@@ -48,10 +55,14 @@
 								<th sorter-table-header field-index="'hearabout'" field-text="'איך שמעת עלינו?'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
 								<th sorter-table-header field-index="'gender'" field-text="'מגדר'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
                                 <th sorter-table-header field-index="'RegistrationDate'" field-text="'תאריך הרשמה'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
-                            </tr>
+								<th sorter-table-header field-index="'comments'" field-text="'הערות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+
+							</tr>
 						</thead>
 						<tbody>
 							<tr ng-click="" ng-repeat="nominee in nominees">
+								<td class="small-cell">
+								<input type="checkbox" />
 								<td class="small-cell">{{nominee.netacityname}}</td>
 								<td class="large-cell">
 									<select ng-model="nominee.nomineestatusid" ng-change="UpdateNomineeStatus(nominee)" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
@@ -69,6 +80,13 @@
 								<td class="large-cell">{{nominee.hearabout}}</td>
 								<td class="small-cell">{{nominee.gender}}</td>
                                 <td class="small-cell">{{nominee.RegistrationDate}}</td>
+								<td class="large-cell" input type="text">{{nominee.comments}}
+									</td>
+
+
+
+
+
                             </tr>
 						</tbody>
 					</table>

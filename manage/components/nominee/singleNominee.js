@@ -1,25 +1,22 @@
 apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$stateParams', 'userService', 'server', function ($rootScope, $scope, $state, $stateParams, userService, server) {	
-	$scope.studentid = $stateParams.studentId;
-	//if creating a new student, require a password to be input
-	$scope.password={};
-	$scope.password.update=($scope.studentid=="");
-	//get image directory into scope
-	$scope.imgsDomain=imgsDomain;
+    $scope.nomineeId = $stateParams.nomineeId;
+    console.log("$stateParams: "+$stateParams.nomineeId);
+
+    $scope.submitted=false;
 	//get data about the student whose id was provided in the url
 	$scope.student={};
 	$scope.GetStudent = function () {
 		var data ={};
-		data.id = $scope.studentid;
-		server.requestPhp(data, 'GetCoursesLearntByStudent').then(function (data) {
-	    	$scope.courses = data;
-		});
-		var data ={};
-		data.id = $scope.studentid;
+		data.nomineeid = $scope.nomineeId;
 		server.requestPhp(data, 'GetStudentProfileById').then(function (data) {
 	    	$scope.student = data;
 		});
 	}
-	//get courses list
+
+    $scope.GetStudent();
+    console.log("nomineeId: "+ $scope.student.nomineeid);
+
+	//get cities list
 	$scope.cities = [];
     $scope.GetCities = function () {
     	var data ={};
@@ -28,25 +25,6 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
 		});
     }
     $scope.GetCities();
-	if($scope.studentid)
-	{
-		$scope.GetStudent();
-	}
-	else
-	{
-		$scope.student.status=1;
-		$scope.student.genderid="";
-		$scope.student.religionid="";
-		$scope.student.adress="";
-		$scope.student.firstnameinarabic="";
-		$scope.student.lastnameinarabic="";
-		$scope.student.phone2="";
-		$scope.student.phone2owner="";
-		$scope.student.image="";
-		$scope.student.notes="";
-		$scope.student.superstaffid="";
-		$scope.student.notes="";
-	}
 	
 	//get genders list
 	$scope.genders = [];
@@ -57,61 +35,73 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
 		});
     }
     $scope.GetGenders();
-	
-    //get religions list
-	$scope.religions = [];
-    $scope.GetReligions = function () {
-    	var data ={};
-        server.requestPhp(data, 'GetReligions').then(function (data) {
-		    $scope.religions = data;
-		});
-    }
-    $scope.GetReligions();
-	
-	//get cities list
-	$scope.cities = [];
-    $scope.GetCities = function () {
-    	var data ={};
-        server.requestPhp(data, 'GetCities').then(function (data) {
-		    $scope.cities = data;
-		});
-    }
-    $scope.GetCities();
 
-	$scope.SaveStudent = function()
+    //get NetaCities list
+    $scope.NetaCities = [];
+    $scope.GetNetaCities = function () {
+        var data ={};
+        server.requestPhp(data, 'GetNetaCities').then(function (data) {
+            $scope.NetaCities = data;
+        });
+    }
+    $scope.GetNetaCities();
+
+    //get schools list
+    $scope.schools = [];
+    $scope.GetSchoolsByNetaCityId = function () {
+        var data = {};
+        data.NetaCityId = $scope.student.netacityid;
+        server.requestPhp(data, "GetSchoolsByNetaCityId").then(function (data) {
+            $scope.schools = data;
+        });
+    }
+    //get Classes list
+    $scope.Classes = [];
+    $scope.GetClasses = function () {
+        var data={};
+        server.requestPhp(data, "GetClasses").then(function (data) {
+            $scope.Classes = data;
+        });
+    }
+    $scope.GetClasses();
+
+    //get statuses list
+    $scope.Statuses = [];
+    $scope.GetStatuses = function () {
+        var data={};
+        server.requestPhp(data, "GetStatuses").then(function (data) {
+            $scope.Statuses = data;
+        });
+    }
+    $scope.GetStatuses();
+
+
+    //get HearAboutUs list
+    $scope.HearAboutUs = [];
+    $scope.GetHearAboutUsOptions = function () {
+        var data={};
+        server.requestPhp(data, "GetHearAboutUsOptions").then(function (data) {
+            $scope.HearAboutUs = data;
+        });
+    }
+    $scope.GetHearAboutUsOptions();
+
+    //UpdateNominee
+	$scope.UpdateNominee = function()
 	{
+		console.log("nominee comments: "+$scope.student.comments);
+        if($scope.submitted)
+            return;
+        $scope.submitted=true;
+
 		var data = {};
 		data.student=$scope.student;
-		data.updatePassword=$scope.password.update;
-		if($scope.studentid)
-		{
-			server.requestPhp(data, 'UpdateStudent').then(function (data) {
-				alertSaveResults(data);
-			});
-		}
-		else
-		{
-			server.requestPhp(data, 'AddStudent').then(function (data) {
-				alertSaveResults(data);
-			});
-		}
+		server.requestPhp(data, 'UpdateNominee').then(function (data) {
+            alert("נשמר בהצלחה");
+            window.history.back();
+		});
 	}
-	var alertSaveResults = function (data)
-	{
-		if(data.error)
-		{
-				alert(data.error);
-		}
-		else
-		{
-			//display 'saved successfully' message
-			alert("נשמר בהצלחה");
-			$state.transitionTo('singleStudent', {
-				studentId : data.studentid
-			});
-		}
-	}
-	
+
 	$scope.goBack = function(){
 		if(confirm("שינויים שנעשו לא יישמרו"))
 		{
@@ -119,42 +109,6 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
 		}
 	};
 	
-	//approve the email of the student, to complete their registration
-    $scope.approveUserRegistration = function () {
-    	var data = {};
-		data.userid = $scope.studentid;
-        server.requestPhp(data, 'approveUserEmail').then(function (data) {
-		    $scope.student.needacceptregister = "";
-		});
-    }
-	
-	$scope.imageUpload=false;
-	$scope.onImageSelect = function($files) {
-		//$files: an array of files selected, each file has name, size, and type.
-		for (var i = 0; $files && i < $files.length; i++) {
-			$scope.imageUpload=true;
-			var $file = $files[i];
-			Upload.upload({
-				url: phpDomain+'datagate.php?type=uploadDoc&token=' + $rootScope.userToken,
-				file: $file,
-				progress: function(e){}
-			}).then(function(data, status, headers, config) {
-				// file is uploaded successfully
-				if (data.data.fileUrl)
-					$scope.student.image =data.data.fileUrl;
-				else if (data.data.error)
-					alert(data.data.error);
-				else
-					alert("תקלה בהעלאת קובץ");
-				$scope.imageUpload=false;
-			}); 
-		}
-	}
-	
-	$scope.goToCoursePage = function(course)
-	{
-		$state.transitionTo('singleCourse', {
-			courseId : course.courseid
-		});
-	}
+
+
 } ]);

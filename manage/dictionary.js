@@ -19,7 +19,8 @@ var dictionary ={
         'submit':'שליחה',
         'year':'שנה',
         'month':'חודש',
-        'day':'יום'
+        'day':'יום',
+
     },
     'ar':{
     	'firstname':'الاسم',
@@ -41,6 +42,6 @@ var dictionary ={
 	    'submit':'إرسال',
 	    'year':'عام',
         'month':'شهر',
-        'day':'يوم'
+        'day':'يوم',
     }
 }

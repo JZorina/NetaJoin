@@ -43,6 +43,39 @@ class Nominees
 		return $result;
 	}
 
+    function UpdateNominee($user)
+    {
+        global $db;
+        $result = $db->smartQuery(array(
+            'sql' => "UPDATE `nominee` SET `firstname`=:firstname,`lastname`:=lastname,`firstnameinarabic`:=firstnameinarabic,`lastnameinarabic`:=lastnameinarabic,`schoolid`:=schoolid,`neighborhood`:=neighborhood,`email`:=email,`phone`:=phone,`phoneparents`:=phoneparents,`birthday`:=birthday,`netacityid`:=netacityid,`cityid`:=cityid,`classid`:=classid,`hearaboutid`:=hearaboutid,`hearaboutother`:=hearaboutother,`SchoolOther`:=SchoolOther,`CityOther`:=CityOther,`nomineestatusid`:=nomineestatusid,`genderid`:=genderid,`comments`:=comments WHERE `nomineeid`:=nomineeid",
+            'par' => array(
+                'firstname'=>$user->firstname,
+                'lastname'=>$user->lastname,
+                'firstnameinarabic'=>$user->firstnameinarabic,
+                'lastnameinarabic'=>$user->lastnameinarabic,
+                'schoolid'=>$user->schoolid,
+                'neighborhood'=>$user->neighborhood,
+                'email'=>$user->email,
+                'phone'=>$user->phone,
+                'phoneparents'=>$user->parentsphone,
+                'birthday'=>$user->birthday,
+                'netacityid'=>$user->netacityid,
+                'cityid'=> $user->cityid,
+                'classid'=> $user->classid,
+                'hearaboutid'=>$user->hearaboutid,
+                'hearaboutother'=>$user->hearaboutother,
+                'SchoolOther'=>$user->schoolother,
+                'CityOther'=>$user->cityother,
+                'nomineestatusid'=>$user->nomineestatusid,
+                'genderid'=>$user->genderid,
+                'comments'=>$user->comments,
+                'nomineeid'=> $user->nomineeid
+            ),
+            'ret' => 'result'
+        ));
+        return $result;
+    }
+
 	function GetNominees()
 	{
 		global $db;
@@ -96,4 +129,26 @@ class Nominees
 		));
 		return true;
 	}
+
+    function UpdateNomineeComments($NomineeId,$Comments)
+    {
+        global $db;
+        $result=$db->smartQuery(array(
+            'sql' => "UPDATE `nominee` SET `comments`=:comments WHERE `nomineeid`=:nomineeid",
+            'par' => array('comments'=>$Comments,'nomineeid' => $NomineeId),
+            'ret' => 'result'
+        ));
+        return true;
+    }
+
+    function GetStudentProfileById($NomineeId)
+    {
+        global $db;
+        $Nominee = $db->smartQuery(array(
+            'sql' => "Select * FROM nominee WHERE nomineeid=:NomineeId",
+            'par' => array('NomineeId'=>$NomineeId),
+            'ret' => 'fetch-assoc'
+        ));
+        return $Nominee;
+    }
 }

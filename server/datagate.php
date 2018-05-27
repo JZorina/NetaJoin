@@ -74,6 +74,15 @@ switch ($type) {
     case "UpdateNomineeStatus" :
         $ans = $Nominee -> UpdateNomineeStatus($data->nomineeid,$data->nomineestatusid);
         break;
+    case "UpdateNomineeComments" :
+        $ans = $Nominee ->UpdateNomineeComments($data->nomineeid,$data->comments);
+        break;
+    case "GetStudentProfileById" :
+        $ans = $Nominee ->GetStudentProfileById($data->nomineeid);
+        break;
+    case "UpdateNominee" :
+        $ans = $Nominee ->UpdateNominee($data->nominee);
+        break;
     // ------------ Status ------------
     case "GetStatuses" :
         $ans = $NomineeStatus -> GetStatuses();

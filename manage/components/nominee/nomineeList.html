@@ -27,8 +27,8 @@
 	            </div>
 				<div class="results-filter">
 					שינוי סטטוס
-					<select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
-						<option value=""></option>
+					<select class="form-input search-bar" ng-model="new_status" ng-change="changeStatusByComboBox(new_status);" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
+						<option selected=""></option>
 					</select>
 				</div>
             </div>
@@ -40,7 +40,7 @@
 					<table id="nomineeId"class="table-striped table-bordered table-hover midrows">
 						<thead>
 							<tr>
-								<th sorter-table-header field-index="" field-text="" sort-by-field="" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
+								<th sorter-table-header class="row1" field-index=""  field-text="" sort-by-field="" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
 								<th sorter-table-header field-index="'netacityname'" field-text="'עיר פעילות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
 								<th sorter-table-header field-index="'nomineestatus'" field-text="'סטטוס'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
 								<th sorter-table-header field-index="'firstname'" field-text="'שם'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
@@ -55,21 +55,24 @@
 								<th sorter-table-header field-index="'hearabout'" field-text="'איך שמעת עלינו?'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="large-cell"></th>
 								<th sorter-table-header field-index="'gender'" field-text="'מגדר'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
                                 <th sorter-table-header field-index="'RegistrationDate'" field-text="'תאריך הרשמה'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
-								<th sorter-table-header field-index="'comments'" field-text="'הערות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
-
+								<th sorter-table-header field-index="'comments'"  field-text="'הערות'" sort-by-field="sortBy" sorting-field="sortingField" reverse-order="reverseOrder" class="small-cell"></th>
 							</tr>
 						</thead>
-						<tbody>
-							<tr ng-click="" ng-repeat="nominee in nominees">
-								<td class="small-cell">
-								<input type="checkbox" />
+						<tbody id="tablebody" >
+							<tr ng-class="{ 'checked': checkedList[$index] }" ng-repeat="nominee in nominees">
+								<td class="row1" class="small-cell">
+								<input class="cb" type="checkbox" ng-click="ChangeStatusByComboBox($index)"/>
 								<td class="small-cell">{{nominee.netacityname}}</td>
 								<td class="large-cell">
 									<select ng-model="nominee.nomineestatusid" ng-change="UpdateNomineeStatus(nominee)" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
 									</select>
 								</td>
-								<td class="small-cell">{{nominee.firstname}}</td>
-								<td class="small-cell">{{nominee.lastname}}</td>
+								<td class="small-cell">
+									<a ng-href="#singleNominee/{{nominee.nomineeid}}">{{nominee.firstname}}</a>
+								</td>
+								<td class="small-cell">
+									<a ng-href="#singleNominee/{{nominee.nomineeid}}">{{nominee.lastname}}</a>
+								</td>
 								<td class="small-cell">{{nominee.phone}}</td>
                                 <td class="small-cell">{{nominee.Parentphone}}</td>
                                 <td class="small-cell">{{nominee.classname}}</td>
@@ -80,17 +83,14 @@
 								<td class="large-cell">{{nominee.hearabout}}</td>
 								<td class="small-cell">{{nominee.gender}}</td>
                                 <td class="small-cell">{{nominee.RegistrationDate}}</td>
-								<td class="large-cell" input type="text">{{nominee.comments}}
-									</td>
+								<td >
+									<input type="text" class="txt" contenteditable="true" ng-change="UpdateNomineeComments(nominee)" ng-model="nominee.comments">
+								</td>
 
-
-
-
-
-                            </tr>
-						</tbody>
-					</table>
-				</div>
+				</tr>
+				</tbody>
+				</table>
+			</div>
 			</div>
 			<page-navigator page-count="pageCount" page-index="pageIndex" go-to-page="goToPage" loading="loading"></page-navigator>
 

@@ -5,7 +5,7 @@ apple.service('userService',['$q', '$state','$rootScope', 'server', function($q,
 
 apple.run(function ($rootScope, $timeout, $state, userService, $document, server) {
 	$rootScope.$on('$viewContentLoaded', function() {
-	      $templateCache.removeAll();
+	     // $templateCache.removeAll();
 	   });
 })
 
@@ -139,9 +139,6 @@ apple.config(function ($stateProvider, $urlRouterProvider,$httpProvider) {
         })
 
 	;
-
-
-
 
 	$httpProvider.interceptors.push(function($document,$rootScope) {
 		return {

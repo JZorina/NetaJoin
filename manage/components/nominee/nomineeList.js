@@ -1,4 +1,5 @@
 apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams','userService', 'server', function ($rootScope, $scope, $state, $stateParams, userService, server) {
+	$scope.checkedList=new Array(null);
 
 	$scope.search=$stateParams.search;
 	$scope.sortingField=$stateParams.sorting?$stateParams.sorting:"studentid";
@@ -38,6 +39,9 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 			$scope.nominees = data.nominees;
 			$scope.pageCount = parseInt(data.pages);
 			$scope.loading=false;
+			$scope.checkedList=new Array($scope.pageCount) ;
+			$scope.checkedList.fill(false);
+
 		});
 	}
 	$scope.getNominees();
@@ -120,7 +124,32 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
     }
     $scope.GetNetaCities();
 
+    $scope.UpdateNomineeComments = function (nominee) {
+        var data={};
+        data.nomineeid= nominee.nomineeid;
+        data.comments= nominee.comments;
+        server.requestPhp(data, "UpdateNomineeComments").then(function (data) {}
+        );
+    }
+    $scope.ChangeStatusByComboBox=function(index) {
+    	console.log("im here! "+ index);
+		$scope.checkedList[index]=!$scope.checkedList[index];
 
 
+	}
+
+	$scope.changeStatusByComboBox=function(s){
+        console.log("before: s: "+s);
+    	$scope.checkedList.forEach(function(el,index) {
+    		if(el==true)
+			{
+				$scope.nominees[index].nomineestatusid= s;
+				console.log("s: "+s);
+                $scope.UpdateNomineeStatus($scope.nominees[index]);
+			}
+
+		});
+
+	}
 
 } ]);

@@ -47,7 +47,28 @@ class Nominees
     {
         global $db;
         $result = $db->smartQuery(array(
-            'sql' => "UPDATE `nominee` SET `firstname`=:firstname,`lastname`:=lastname,`firstnameinarabic`:=firstnameinarabic,`lastnameinarabic`:=lastnameinarabic,`schoolid`:=schoolid,`neighborhood`:=neighborhood,`email`:=email,`phone`:=phone,`phoneparents`:=phoneparents,`birthday`:=birthday,`netacityid`:=netacityid,`cityid`:=cityid,`classid`:=classid,`hearaboutid`:=hearaboutid,`hearaboutother`:=hearaboutother,`SchoolOther`:=SchoolOther,`CityOther`:=CityOther,`nomineestatusid`:=nomineestatusid,`genderid`:=genderid,`comments`:=comments WHERE `nomineeid`:=nomineeid",
+            'sql' => "UPDATE `nominee` SET
+                `firstname`=:firstname,
+                `lastname`=:lastname,
+                `firstnameinarabic`=:firstnameinarabic,
+                `lastnameinarabic`=:lastnameinarabic,
+                `schoolid`=:schoolid,
+                `neighborhood`=:neighborhood,
+                `email`=:email,
+                `phone`=:phone,
+                `phoneparents`=:phoneparents,
+                `birthday`=:birthday,
+                `netacityid`=:netacityid,
+                `cityid`=:cityid,
+                `classid`=:classid,
+                `hearaboutid`=:hearaboutid,
+                `hearaboutother`=:hearaboutother,
+                `SchoolOther`=:SchoolOther,
+                `CityOther`=:CityOther,
+                `nomineestatusid`=:nomineestatusid,
+                `genderid`=:genderid,
+                `comments`=:comments
+        WHERE `nomineeid`=:nomineeid",
             'par' => array(
                 'firstname'=>$user->firstname,
                 'lastname'=>$user->lastname,
@@ -57,18 +78,18 @@ class Nominees
                 'neighborhood'=>$user->neighborhood,
                 'email'=>$user->email,
                 'phone'=>$user->phone,
-                'phoneparents'=>$user->parentsphone,
+                'phoneparents'=>$user->phoneparents,
                 'birthday'=>$user->birthday,
                 'netacityid'=>$user->netacityid,
                 'cityid'=> $user->cityid,
                 'classid'=> $user->classid,
                 'hearaboutid'=>$user->hearaboutid,
                 'hearaboutother'=>$user->hearaboutother,
-                'SchoolOther'=>$user->schoolother,
-                'CityOther'=>$user->cityother,
+                'SchoolOther'=>$user->SchoolOther,
+                'CityOther'=>$user->CityOther,
                 'nomineestatusid'=>$user->nomineestatusid,
                 'genderid'=>$user->genderid,
-                'comments'=>$user->comments,
+                'comments'=>isset($user->comments)?$user->comments:'',
                 'nomineeid'=> $user->nomineeid
             ),
             'ret' => 'result'

@@ -95,7 +95,7 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
         $scope.submitted=true;
 
 		var data = {};
-		data.student=$scope.student;
+		data.nominee=$scope.student;
 		server.requestPhp(data, 'UpdateNominee').then(function (data) {
             alert("נשמר בהצלחה");
             window.history.back();

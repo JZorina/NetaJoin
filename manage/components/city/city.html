@@ -8,7 +8,8 @@
 			<hr>
 			<div class="form-group" ng-repeat="city in cities">
 				<div>
-					<input required style="width: 30%;" class="form-control" placeholder="שם עיר" ng-model="city.name">
+					<input required style="width: 30%;margin-left: 20px; float: right;" class="form-control" placeholder="שם מגדר" ng-model="city.name">
+					<input  style="width: 30%;" class="form-control" placeholder="שם עיר" ng-model="city.ArabicCityName">
 				</div>
 			</div>
 			<button ng-click="CreateData()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף עיר<img src="./img/icon-add.png" /></button>

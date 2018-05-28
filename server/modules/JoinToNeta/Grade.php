@@ -27,17 +27,17 @@ class Grade
             $ArabicClassName = isset($Grade->ArabicClassName)?$Grade->ArabicClassName :'';
             if(isset($Grade->classid))
             {
-                $id = $Grade->classid;
+
                 $result = $db->smartQuery(array(
-                    'sql' => "update class set classname= :classname, nameinarabic =:nameinarabic where classid=:id",
-                    'par' => array('classname'=>$Grade->classname,'ArabicClassName'=>ArabicClassName),
+                    'sql' => "UPDATE `class` SET  `ArabicClassName` =:ArabicClassName, `classname= :classname` where `classid`=:id",
+                    'par' => array('ArabicClassName'=>$Grade->ArabicClassName,'classname'=>$Grade->classname,'classid'=>$Grade->classid),
                     'ret' => 'result'
                 ));
             }else
             {
                 $result = $db->smartQuery(array(
-                    'sql' => "insert into class (ArabicClassName,classname)values(:name,:ArabicClassName)",
-                    'par' => array('name'=>$Grade->classname,'ArabicClassName'=>ArabicClassName),
+                    'sql' => "INSERT INTO class (ArabicClassName,classname)VALUES(:ArabicClassName,:name)",
+                    'par' => array('ArabicClassName'=>$Grade->ArabicClassName,'name'=>$Grade->classname),
                     'ret' => 'result'
                 ));
             }

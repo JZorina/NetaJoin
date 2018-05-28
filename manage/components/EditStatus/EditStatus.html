@@ -1,10 +1,31 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<div id="wrapper">
+    <header></header>
+    <div id="page-wrapper">
+        <div class="panel-body">
+            <div class="tab-content">
+                <form ng-submit="SaveData()" role="form">
+                    <h5>סטטוסים:</h5>
+                    <hr>
+                    <div class="form-group" ng-repeat="status in statuses">
+                        <div>
+                            <input required style="width: 30%;" class="form-control" placeholder="שם עיר" ng-model="status.nomineestatus">
+                        </div>
+                    </div>
+                    <button ng-click="CreateData()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף סטטוס<img src="./img/icon-add.png" /></button>
 
-</body>
-</html>
+                    <hr>
+                    <div class="card-controls">
+                        <button tabindex="18" type="submit" class="button card-control commit-card-edit">שמור</button>
+                        <button tabindex="19" type="button" class="button card-control cancel-card-edit" ng-click="ClearData();">בטל</button>
+                    </div>
+                    <span modal-confirm control="alertcontrol" text="הנתונים נשמרו בהצלחה.">
+			</span>
+
+                </form>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+    </div>
+
+</div>
+

@@ -18,7 +18,7 @@ apple.controller('city', ['$rootScope', '$scope', '$state', 'userService', 'serv
 				alert(data.error);
 			}else
 			{
-				$scope.alertcontrol.open();
+				//$scope.alertcontrol.open();
 				$scope.GetCities();
 			}
 		});
@@ -32,7 +32,8 @@ apple.controller('city', ['$rootScope', '$scope', '$state', 'userService', 'serv
 	{
 		$scope.cities.push({
 			"name": '',
-			"IsShow":true
+			"IsShow":true,
+			"ArabicCityName":''
 		});
 	}
 		

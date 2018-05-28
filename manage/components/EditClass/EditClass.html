@@ -11,8 +11,8 @@
                     <h5 style="margin-right: 35%;margin-top: -25px;">ערבית:</h5>
                     <div class="form-group" ng-repeat="class in classes">
                         <div>
-                            <input required style="width: 30%;margin-left: 20px; float: right;" class="form-control" placeholder="כיתה " ng-model="EditClass.classname">
-                            <input style="width: 30%;" class="form-control" placeholder="שם כיתה" ng-model="EditClass.ArabicClassName">
+                            <input required style="width: 30%;margin-left: 20px; float: right;" class="form-control" placeholder="כיתה בעברית " ng-model="class.classname">
+                            <input style="width: 30%;" class="form-control" placeholder="כיתה בערבית" ng-model="class.ArabicClassName">
                         </div>
                     </div>
                     <button ng-click="CreateData()" style="text-align: right;border-color: #49814d; background-color: #49814d;" type="button" class="btn btn-info">הוסף כיתה<img src="./img/icon-add.png" /></button>

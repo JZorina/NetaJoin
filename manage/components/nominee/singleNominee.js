@@ -4,17 +4,17 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
 
     $scope.submitted=false;
 	//get data about the student whose id was provided in the url
-	$scope.student={};
+	$scope.nominee={};
 	$scope.GetStudent = function () {
 		var data ={};
 		data.nomineeid = $scope.nomineeId;
 		server.requestPhp(data, 'GetStudentProfileById').then(function (data) {
-	    	$scope.student = data;
+	    	$scope.nominee = data;
 		});
 	}
 
     $scope.GetStudent();
-    console.log("nomineeId: "+ $scope.student.nomineeid);
+    console.log("nomineeId: "+ $scope.nominee.nomineeId);
 
 	//get cities list
 	$scope.cities = [];
@@ -50,7 +50,7 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
     $scope.schools = [];
     $scope.GetSchoolsByNetaCityId = function () {
         var data = {};
-        data.NetaCityId = $scope.student.netacityid;
+        data.NetaCityId = $scope.nominee.netacityid;
         server.requestPhp(data, "GetSchoolsByNetaCityId").then(function (data) {
             $scope.schools = data;
         });
@@ -89,13 +89,13 @@ apple.controller('singleNominee', ['$rootScope', '$scope', '$state', '$statePara
     //UpdateNominee
 	$scope.UpdateNominee = function()
 	{
-		console.log("nominee comments: "+$scope.student.comments);
+		console.log("nominee comments: "+$scope.nominee.comments);
         if($scope.submitted)
             return;
         $scope.submitted=true;
 
 		var data = {};
-		data.nominee=$scope.student;
+		data.nominee=$scope.nominee;
 		server.requestPhp(data, 'UpdateNominee').then(function (data) {
             alert("נשמר בהצלחה");
             window.history.back();

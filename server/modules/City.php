@@ -30,17 +30,22 @@ class City{
 		{
 			if(isset($city->cityid))
 			{
-				$id = $city->cityid;
 				$result = $db->smartQuery(array(
-					'sql' => "update city set name= :name, IsShow =:IsShow  where cityid=:id",
-					'par' => array('name'=>$city->name,'IsShow'=>$city->IsShow, 'id'=>$id),
+					'sql' => "UPDATE `city` 
+                              SET `name`=:name, `IsShow`=:IsShow,`ArabicCityName`=:ArabicCityName
+                              WHERE `cityid`=:cityid",
+					'par' => array(
+					    'name'=>$city->name,
+                        'IsShow'=>$city->IsShow,
+                        'ArabicCityName'=>$city->ArabicCityName,
+                        'cityid'=>$city->cityid),
 					'ret' => 'result'
 				));
 			}else
 			{
 				$result = $db->smartQuery(array(
-					'sql' => "insert into city (name,IsShow)values(:name,:IsShow)",
-					'par' => array('name'=>$city->name, 'IsShow'=>$city->IsShow),
+					'sql' => "INSERT INTO city (name,IsShow,ArabicCityName)VALUES(:name,:IsShow,:ArabicCityName)",
+					'par' => array('name'=>$city->name, 'IsShow'=>$city->IsShow, 'ArabicCityName'=>$city->ArabicCityName),
 					'ret' => 'result'
 				));
 			}

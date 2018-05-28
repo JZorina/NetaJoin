@@ -19,18 +19,22 @@ switch ($type) {
         $ans = $City -> GetCities();
         break;
     case "AddCity" :
-        if ($me['type'] == 'admin')
+       // if ($me['type'] == 'admin')
             $ans = $City -> AddCities($data->cities);
             break;
     case "GetNetaCities" :
         $ans = $NetaCity -> GetNetaCities();
+        break;
+    case "AddNetaCities" :
+        // if ($me['type'] == 'admin')
+        $ans = $NetaCity -> AddNetaCities($data->NetaCities);
         break;
         // ------------ Genders ------------
     case "GetGenders" :
         $ans = $Gender -> GetGenders();
         break;
     case "AddGender" :
-        if ($me['type'] == 'admin')
+       // if ($me['type'] == 'admin')
             $ans = $Gender -> AddGender($data->genders);
             break;
             // ------------ Religions ------------
@@ -38,7 +42,7 @@ switch ($type) {
         $ans = $Religion -> GetReligions();
         break;
     case "AddReligion" :
-        if ($me['type'] == 'admin')
+       // if ($me['type'] == 'admin')
             $ans = $Religion -> AddReligion($data->religions);
             break;
     // ------------ Schools ------------
@@ -55,13 +59,16 @@ switch ($type) {
         $ans = $Grade -> GetClasses();
         break;
     case "AddClass" :
-        if ($me['type'] == 'admin')
+       // if ($me['type'] == 'admin')
             $ans = $Grade -> AddClass($data->classes);
         break;
 
     // ------------ HearAboutUs ------------
     case "GetHearAboutUsOptions" :
         $ans = $HearAboutUs -> GetHearAboutUsOptions();
+        break;
+    case "AddHearAbout" :
+        $ans = $HearAboutUs -> AddHearAbout($data->hearabout);
         break;
 
     // ------------ Nominees ------------
@@ -86,6 +93,9 @@ switch ($type) {
     // ------------ Status ------------
     case "GetStatuses" :
         $ans = $NomineeStatus -> GetStatuses();
+        break;
+    case "AddStatus" :
+        $ans = $NomineeStatus -> AddStatus($data->status);
         break;
 
     default :

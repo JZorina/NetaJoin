@@ -19,7 +19,7 @@ apple.controller('EditClass', ['$rootScope', '$scope', '$state', 'userService', 
                 alert(data.error);
             }else
             {
-                $scope.alertcontrol.open();
+               // $scope.alertcontrol.open();
                 $scope.GetClasses();
             }
         });

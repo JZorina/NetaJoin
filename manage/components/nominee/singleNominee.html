@@ -4,23 +4,23 @@
 		<h2 class="page-title">עריכת חניך</h2>
 		<form ng-submit="UpdateNominee()">
 			<div>
-				<p>נרשם ב: {{student.RegistrationDate}}</p>
+				<p>נרשם ב: {{nominee.RegistrationDate}}</p>
 			</div>
 			<br>
-			<h4 ng-if="student.nomineeid">הפרופיל של {{student.firstname+" "+student.lastname}}</h4>
+			<h4 ng-if="nominee.nomineeid">הפרופיל של {{nominee.firstname+" "+nominee.lastname}}</h4>
 			<div class="form-row">
 				<div class="input-col">
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>שם פרטי בעברית</label>
-							<input required tabindex="1"  class="form-input input-content" ng-model="student.firstname">
+							<input required tabindex="1"  class="form-input input-content" ng-model="nominee.firstname">
 						</div>
 					</div>
 
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>שם משפחה בעברית</label>
-							<input required tabindex="2"  class="form-input input-content" ng-model="student.lastname">
+							<input required tabindex="2"  class="form-input input-content" ng-model="nominee.lastname">
 						</div>
 					</div>
 				</div>
@@ -29,14 +29,14 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>שם פרטי בערבית</label>
-							<input tabindex="3" class="form-input input-content" ng-model="student.firstnameinarabic">
+							<input tabindex="3" class="form-input input-content" ng-model="nominee.firstnameinarabic">
 						</div>
 					</div>
 					
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>שם משפחה בערבית</label>
-							<input tabindex="4" class="form-input input-content" ng-model="student.lastnameinarabic">
+							<input tabindex="4" class="form-input input-content" ng-model="nominee.lastnameinarabic">
 						</div>
 					</div>
 				</div>
@@ -47,7 +47,7 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>מס' טלפון</label>
-							<input required tabindex="5" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="student.phone">
+							<input required tabindex="5" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="nominee.phone">
 						</div>
 					</div>
 
@@ -55,7 +55,7 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>מס' טלפון של הורים</label>
-							<input tabindex="6" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="student.phoneparents">
+							<input tabindex="6" type="text" pattern="[0-9,-]*" class="form-input input-content" ng-model="nominee.phoneparents">
 						</div>
 					</div>
 				</div>
@@ -66,7 +66,7 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>עיר מגורים</label>
-							<select required tabindex="8" class="form-input input-content" ng-model="student.cityid" ng-options="city.cityid as city.name for city in cities">
+							<select required tabindex="8" class="form-input input-content" ng-model="nominee.cityid" ng-options="city.cityid as city.name for city in cities">
 								<option></option>
 							</select>
 						</div>
@@ -75,14 +75,14 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>כתובת</label>
-							<input tabindex="9" class="form-input input-content" ng-model="student.neighborhood">
+							<input tabindex="9" class="form-input input-content" ng-model="nominee.neighborhood">
 						</div>
 					</div>
 
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>עיר פעילות</label>
-							<select required tabindex="10" class="form-input input-content" ng-model="student.netacityid" ng-change="GetSchoolsByNetaCityId()" ng-options="netacity.CityId as netacity.CityName for netacity in NetaCities">
+							<select required tabindex="10" class="form-input input-content" ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()" ng-options="netacity.CityId as netacity.CityName for netacity in NetaCities">
 								<option></option>
 							</select>
 						</div>
@@ -91,7 +91,7 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>בית ספר</label>
-							<select required tabindex="11" class="form-input input-content" ng-model="student.schoolid" ng-options="school.schoolid as school.schoolname for school in schools" >
+							<select required tabindex="11" class="form-input input-content" ng-model="nominee.schoolid" ng-options="school.schoolid as school.schoolname for school in schools" >
 							</select>
 						</div>
 					</div>
@@ -103,7 +103,7 @@
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>כיתה</label>
-							<select tabindex="12" class="form-input input-content" ng-model="student.classid" ng-options="class.classid as class.classname for class in Classes">
+							<select tabindex="12" class="form-input input-content" ng-model="nominee.classid" ng-options="class.classid as class.classname for class in Classes">
 								<option></option>
 							</select>
 						</div>
@@ -111,7 +111,7 @@
 				<div class="input-col">
 					<div class="input-wrapper">
 						<label>כיצד שמעת עלינו</label>
-						<select tabindex="13" class="form-input input-content" ng-model="student.hearaboutid" ng-options="hearabout.hearaboutid as hearabout.hearaboutoption for hearabout in HearAboutUs">
+						<select tabindex="13" class="form-input input-content" ng-model="nominee.hearaboutid" ng-options="hearabout.hearaboutid as hearabout.hearaboutoption for hearabout in HearAboutUs">
 							<option></option>
 						</select>
 					</div>
@@ -121,7 +121,7 @@
 				<div class="input-col">
 					<div class="input-wrapper">
 						<label>סטטוס</label>
-						<select tabindex="14" class="form-input input-content" ng-model="student.nomineestatusid" ng-options="nomineestatus.nomineestatusid as nomineestatus.nomineestatus for nomineestatus in Statuses">
+						<select tabindex="14" class="form-input input-content" ng-model="nominee.nomineestatusid" ng-options="nomineestatus.nomineestatusid as nomineestatus.nomineestatus for nomineestatus in Statuses">
 							<option>
 						</select>
 					</div>
@@ -129,7 +129,7 @@
 				<div class="input-col">
 					<div class="input-wrapper">
 						<label>מגדר</label>
-						<select tabindex="15" class="form-input input-content" ng-model="student.genderid" ng-options="gender.genderid as gender.name for gender in genders">
+						<select tabindex="15" class="form-input input-content" ng-model="nominee.genderid" ng-options="gender.genderid as gender.name for gender in genders">
 							<option></option>
 						</select>
 					</div>
@@ -143,14 +143,14 @@
 					<div class="input-col">
 						<div class="input-wrapper" style="max-width: 17em;">
 							<label>תאריך לידה</label>
-							<input required="true" type="" tabindex="16" class="form-input input-content" ng-model="student.birthday">
+							<input required="true" type="" tabindex="16" class="form-input input-content" ng-model="nominee.birthday">
 						</div>
 					</div>
 
 					<div class="input-col">
 						<div class="input-wrapper">
 							<label>אימייל</label>
-							<input required type="email" tabindex="17" class="form-input input-content" ng-model="student.email">
+							<input required type="email" tabindex="17" class="form-input input-content" ng-model="nominee.email">
 						</div>
 					</div>
 				</div>
@@ -160,7 +160,7 @@
 			<div>
 				<b>הערות</b>
 				<br>
-				<textarea rows="6" style=" width:100%;" tabindex="18" ng-model="student.comments"></textarea>
+				<textarea rows="6" style=" width:100%;" tabindex="18" ng-model="nominee.comments"></textarea>
 			</div>
 			<br>
 			<div class="form-group">

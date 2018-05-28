@@ -19,7 +19,7 @@ apple.controller('gender', ['$rootScope', '$scope', '$state', 'userService', 'se
 				alert(data.error);
 			}else
 			{
-				$scope.alertcontrol.open();
+				//$scope.alertcontrol.open();
 				$scope.GetGenders();
 			}
 		});

@@ -19,4 +19,35 @@ class NomineeStatus
         ));
         return $Statuses;
     }
+
+    function AddStatus($data)
+    {
+        global $db;
+        foreach($data as $NomineeStatus)
+        {
+            if(isset($NomineeStatus->nomineestatusid))
+            {
+
+                $result = $db->smartQuery(array(
+                    'sql' => "
+                  UPDATE `nomineestatus` 
+                  SET   `nomineestatus` =:nomineestatus,         
+                  WHERE `nomineestatusid`=:nomineestatusid",
+                    'par' => array(
+                        'nomineestatus'=>$NomineeStatus->nomineestatus,
+                        'nomineestatusid'=>$NomineeStatus->nomineestatusid),
+                    'ret' => 'result'
+                ));
+            }else
+            {
+                $result = $db->smartQuery(array(
+                    'sql' => "INSERT INTO nomineestatus (nomineestatus)VALUES(:nomineestatus)",
+                    'par' => array('nomineestatus'=>$NomineeStatus->nomineestatus),
+                    'ret' => 'result'
+                ));
+            }
+        }
+        return $result;
+    }
+
 }

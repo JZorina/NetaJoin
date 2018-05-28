@@ -34,6 +34,7 @@
 	<label class="required">{{dictionary.gender}}: </label>
 	<br>
 	<select required ng-model="nominee.genderid">
+		<option value=""></option>
 		<option ng-repeat="gender in genders" ng-value="gender.genderid">{{isArabic?gender.nameinarabic:gender.name}}</option>
 	</select>
 	<br>
@@ -78,6 +79,7 @@
 	<label class="required">{{dictionary.netacity}}: </label>
 	<br>
 	<select required ng-model="nominee.netacityid" ng-change="GetSchoolsByNetaCityId()">
+		<option value=""></option>
 		<option ng-repeat="NetaCity in Netacities" ng-value="NetaCity.CityId">{{isArabic?NetaCity.ArabicCityName:NetaCity.CityName}}</option>
 	</select>
 	<br>
@@ -85,6 +87,7 @@
 	<label class="required">{{dictionary.school}}: </label>
 	<br>
 	<select required ng-model="nominee.schoolid">
+		<option value=""></option>
 		<option ng-repeat="school in schools" ng-value="school.schoolid">{{isArabic?school.ArabicSchoolName:school.schoolname}}</option>
 		<option value="999">{{dictionary.else}}</option>
 	</select>
@@ -105,6 +108,7 @@
 	<label class="required">{{dictionary.grade}}: </label>
 	<br>
 	<select required ng-model="nominee.classid">
+		<option value=""></option>
 		<option ng-repeat="class in Classes" ng-value="class.classid">{{isArabic?class.ArabicClassName:class.classname}}</option>
 	</select>
 	<br>
@@ -112,6 +116,7 @@
 	<label class="required">{{dictionary.learnaboutus}}: </label>
 	<br>
 	<select required ng-model="nominee.hearaboutid">
+		<option value=""></option>
 		<option ng-repeat="HearAbout in HearAboutUs" ng-value="HearAbout.hearaboutid">{{isArabic?HearAbout.ArabicHearAbout:HearAbout.hearaboutoption}}</option>
 		<option value="999">{{dictionary.else}}</option>
 	</select>

@@ -128,14 +128,11 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
         var data={};
         data.nomineeid= nominee.nomineeid;
         data.comments= nominee.comments;
-        server.requestPhp(data, "UpdateNomineeComments").then(function (data) {}
-        );
+        server.requestPhp(data, "UpdateNomineeComments").then(function (data) {});
     }
     $scope.ChangeStatusByComboBox=function(index) {
     	console.log("im here! "+ index);
 		$scope.checkedList[index]=!$scope.checkedList[index];
-
-
 	}
 
 	$scope.changeStatusByComboBox=function(s){
@@ -147,9 +144,24 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 				console.log("s: "+s);
                 $scope.UpdateNomineeStatus($scope.nominees[index]);
 			}
-
 		});
-
 	}
-
+	
+	$scope.deleteSelectedNominees = function ()
+	{
+		if(!confirm("בטוח? לא ניתן לבטל מחיקה!"))
+			return
+		var toDelete = [];
+		$scope.checkedList.forEach(function(el,index) {
+    		if(el==true)
+			{
+    			toDelete.push($scope.nominees[index].nomineeid);
+			}
+		});
+		var data = {};
+    	data.nominees = toDelete;
+        server.requestPhp(data, "DeleteNominees").then(function (data) {
+			$scope.refreshResults();
+		});
+	}
 } ]);

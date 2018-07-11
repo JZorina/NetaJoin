@@ -96,7 +96,30 @@ class Nominees
         ));
         return $result;
     }
-
+    
+    function DeleteNominees($nomineeIds)
+    {
+		if(count($nomineeIds)==0)
+			return;
+        global $db;
+        $deleteQuery = "DELETE FROM `nominee` WHERE `nomineeid` IN (";
+        $deleteParams = array();
+        foreach ($nomineeIds AS $index=>$nid)
+        {
+            $deleteQuery.=":nomineeid".$index;
+            //add a comma to seperate values, unless working on the last value
+            $deleteQuery.=($index<count($nomineeIds)-1)?",":"";
+            //add coresponding parameter to the array
+            $deleteParams['nomineeid'.$index]=$nid;
+        }
+		$deleteQuery.=")";
+        $result=$db->smartQuery(array(
+            'sql' => $deleteQuery,
+            'par' => $deleteParams,
+            'ret' => 'result'
+        ));
+        return true;
+    }
 	function GetNominees()
 	{
 		global $db;

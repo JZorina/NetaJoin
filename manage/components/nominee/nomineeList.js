@@ -134,8 +134,6 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
     $scope.ChangeStatusByComboBox=function(index) {
     	console.log("im here! "+ index);
 		$scope.checkedList[index]=!$scope.checkedList[index];
-
-
 	}
 
 	$scope.changeStatusByComboBox=function(s){
@@ -147,9 +145,6 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 				console.log("s: "+s);
                 $scope.UpdateNomineeStatus($scope.nominees[index]);
 			}
-
 		});
-
 	}
-
 } ]);

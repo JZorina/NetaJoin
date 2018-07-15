@@ -163,16 +163,40 @@ class Nominees
 		return cutPage($nominees, 'nominees', $page);
 	}
 
-	function UpdateNomineeStatus($NomineeId, $StatusId)
+	function UpdateMultipleNomineeStatus($nominees)
 	{
-		global $db;
-		$result=$db->smartQuery(array(
-			'sql' => "UPDATE `nominee` SET `nomineestatusid`=:nomineestatusid WHERE `nomineeid`=:nomineeid",
-			'par' => array('nomineestatusid' => $StatusId, 'nomineeid' => $NomineeId),
-			'ret' => 'result'
-		));
-		return true;
+        if(count($nominees)==0)
+            return;
+        global $db;
+        $updateQuery = "UPDATE `nominee` SET `nomineestatusid`=:nomineestatusid WHERE `nomineeid` IN (";
+        $updateParams = array('nomineestatusid' => $nominees[0]->nomineestatusid);
+        foreach ($nominees AS $index=>$nominee)
+        {
+            $updateQuery.=":nomineeid".$index;
+            //add a comma to seperate values, unless working on the last value
+            $updateQuery.=($index<count($nominees)-1)?",":"";
+            //add coresponding parameter to the array
+            $updateParams['nomineeid'.$index]=$nominee->nomineeid;
+        }
+        $updateQuery.=")";
+        $result=$db->smartQuery(array(
+            'sql' => $updateQuery,
+            'par' => $updateParams,
+            'ret' => 'result'
+        ));
+        return true;
 	}
+
+    function UpdateNomineeStatus($NomineeId, $StatusId)
+    {
+        global $db;
+        $result=$db->smartQuery(array(
+            'sql' => "UPDATE `nominee` SET `nomineestatusid`=:nomineestatusid WHERE `nomineeid`=:nomineeid",
+            'par' => array('nomineestatusid' => $StatusId, 'nomineeid' => $NomineeId),
+            'ret' => 'result'
+        ));
+        return true;
+    }
 
     function UpdateNomineeComments($NomineeId,$Comments)
     {
@@ -183,6 +207,7 @@ class Nominees
             'ret' => 'result'
         ));
         return true;
+
     }
 
     function GetStudentProfileById($NomineeId)

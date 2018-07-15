@@ -76,6 +76,9 @@ switch ($type) {
     case "UpdateNomineeStatus" :
         $ans = $Nominee -> UpdateNomineeStatus($data->nomineeid,$data->nomineestatusid);
         break;
+    case "UpdateMultipleNomineeStatus" :
+        $ans = $Nominee -> UpdateMultipleNomineeStatus($data->nominees);
+        break;
     case "UpdateNomineeComments" :
         $ans = $Nominee ->UpdateNomineeComments($data->nomineeid,$data->comments);
         break;

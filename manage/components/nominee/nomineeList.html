@@ -13,23 +13,33 @@
 			<hr></hr>
 			<div class="results-filters-wrap">
 	            <div class="results-filter">
-				סינון לפי עיר פעילות
+					סינון לפי עיר פעילות
+					<br>
 	                <select class="form-input search-bar" ng-model="filter.netacityid" ng-change="refreshResults();" ng-options="NetaCity.CityId as NetaCity.CityName for NetaCity in Netacities">
 	                    <option value=""></option>
 	                </select>
 	            </div>
 	
 	            <div class="results-filter">
-				סינון לפי סטטוס
+					סינון לפי סטטוס
+					<br>
 	                <select class="form-input search-bar" ng-model="filter.nomineestatusid" ng-change="refreshResults();" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
 	                    <option value=""></option>
 	                </select>
 	            </div>
 				<div class="results-filter">
 					שינוי סטטוס
+					<br>
 					<select class="form-input search-bar" ng-model="new_status" ng-change="changeStatusByComboBox(new_status);" ng-options="status.nomineestatusid as status.nomineestatus for status in NomineesStatuses">
 						<option selected=""></option>
 					</select>
+				</div>
+				<div class="results-filter">
+					מחיקת מועמדים 
+					<br>
+					<button class="form-input search-bar" ng-click="deleteSelectedNominees()">
+						מחיקה
+					</button>
 				</div>
             </div>
             <hr></hr>

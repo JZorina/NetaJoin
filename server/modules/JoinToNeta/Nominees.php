@@ -131,7 +131,7 @@ class Nominees
 		return $Nominees;
 	}
 
-	function SearchNominees($search, $sorting, $desc, $page,$netacityfilter, $statusfilter)
+	function SearchNominees($search, $sorting, $desc, $page,$netacityfilter, $statusfilter,$classfilter)
 	{
 		$sortByField='nomineeid';
 		//permit only certain ORDER BY values to avoid injection
@@ -156,8 +156,9 @@ class Nominees
 					  CONCAT(`firstname`,' ',`lastname`,' ',n.CityName,' ',`email`, ' ',IFNULL(hearabout.hearaboutoption, nominee.hearaboutother), ' ',  IFNULL(city.name, nominee.CityOther),' ',IFNULL(s.schoolname,nominee.SchoolOther) ) LIKE :search 
 					  AND (nominee.netacityid =:netacityfilter OR :netacityfilter IS NULL)
 					  AND (nominee.nomineestatusid=:statusfilter OR :statusfilter IS NULL)
+					  AND (nominee.classid=:classfilter OR :classfilter IS NULL)
 				ORDER BY ".$sortByField." ".$sortingDirection,
-			'par' => array('search'=>'%'.$search.'%', 'netacityfilter'=>$netacityfilter,'statusfilter'=>$statusfilter),
+			'par' => array('search'=>'%'.$search.'%', 'netacityfilter'=>$netacityfilter,'statusfilter'=>$statusfilter,'classfilter'=>$classfilter),
 			'ret' => 'all'
 		));
 		return cutPage($nominees, 'nominees', $page);

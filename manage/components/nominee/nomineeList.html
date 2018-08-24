@@ -18,6 +18,13 @@
 	                    <option value=""></option>
 	                </select>
 	            </div>
+		<div class="results-filter">
+			סינון לפי כיתה
+			<br>
+			<select class="form-input search-bar" ng-model="filter.classid" ng-change="refreshResults();" ng-options="class.classid as class.classname for class in Classes">
+				<option value=""></option>
+			</select>
+		</div>
 	            <div class="results-filter">
 					סינון לפי סטטוס
 					<br>

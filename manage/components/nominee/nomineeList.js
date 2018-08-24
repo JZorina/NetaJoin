@@ -14,7 +14,8 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
     $scope.nominees=[];
 
     $scope.filter={};
-
+    $scope.filter.classid=null;
+	
     $scope.filter.netacityid=null;
 
     $scope.filter.nomineestatusid=null;
@@ -37,13 +38,14 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
     $scope.getNominees = function() {
         $scope.loading=true;
         var search = $scope.search;
+	var ClassFilter = $scope.filter.classid;
         var netaCityFilter = $scope.filter.netacityid;
         var nomineeStatusFilter = $scope.filter.nomineestatusid;
         var sorting = $scope.sortingField;
         var desc = $scope.reverseOrder;
         var userstatus = $scope.studentStatus;
         var page = $scope.pageIndex;
-        var data ={'search': search, 'netaCityFilter': netaCityFilter, 'nomineeStatusFilter':nomineeStatusFilter, 'sorting': sorting, 'desc':desc, 'userstatus': userstatus, 'page': page};
+	var data ={'search': search, 'sorting': sorting, 'desc':desc, 'userstatus': userstatus, 'page': page, 'ClassFilter':ClassFilter,'netaCityFilter': netaCityFilter, 'nomineeStatusFilter':nomineeStatusFilter};
 
         server.requestPhp(data, 'SearchNominees').then(function (data) {
             $scope.nominees = data.nominees;
@@ -140,6 +142,15 @@ apple.controller('nomineeList', ['$rootScope', '$scope', '$state', '$stateParams
 
     $scope.GetNetaCities();
 
+    $scope.Classes = [];
+    $scope.GetClasses = function () {
+        var data={};
+        server.requestPhp(data, "GetClasses").then(function (data) {
+             $scope.Classes = data;
+        });
+    }
+    $scope.GetClasses();
+	
     $scope.UpdateNomineeComments = function (nominee) {
         var data={};
         data.nomineeid= nominee.nomineeid;
